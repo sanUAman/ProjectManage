@@ -1,0 +1,13 @@
+﻿@model ProjectManage.Models.User
+
+@{
+    ViewData["Title"] = "Bad nickname";
+}
+<link rel="stylesheet" href="~/css/Nickname_error.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="project-body">
+    <h1>The nickname "@Model.nickname" is already taken</h1>
+    <h2>Try another one)</h2>
+    <a class="button" asp-controller="User" asp-action="Index">Return back</a>
+</div>

@@ -1,0 +1,20 @@
+﻿@model NameOfProject
+@{
+    ViewData["Title"] = "Manager";
+}
+<link rel="stylesheet" href="~/css/Manager.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="project-container">
+    <form method="post" asp-controller="Manager" asp-action="Create">
+        <label asp-for="name">Name of Project:</label>
+        <input asp-for="name" type="text" id="name" name="name" required><br>
+        <span asp-validation-for="name" class="text-danger"></span> <!-- Вивід помилки -->
+
+        <button type="submit" class="project-button">Create Project</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
