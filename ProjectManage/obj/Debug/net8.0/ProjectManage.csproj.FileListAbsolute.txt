@@ -135,3 +135,4 @@ C:\Users\dziva\source\repos\ProjectManage\ProjectManage\bin\Debug\net8.0\runtime
 C:\Users\dziva\source\repos\ProjectManage\ProjectManage\obj\Debug\net8.0\ProjectManage.csproj.AssemblyReference.cache
 C:\Users\dziva\source\repos\ProjectManage\ProjectManage\obj\Debug\net8.0\ProjectM.A9B3FE49.Up2Date
 C:\Users\dziva\source\repos\ProjectManage\ProjectManage\bin\Debug\net8.0\libman.json
+C:\Users\dziva\source\repos\ProjectManage\ProjectManage\obj\Debug\net8.0\ProjectManage.sourcelink.json

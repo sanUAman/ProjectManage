@@ -10,5 +10,7 @@ namespace ProjectManage.Data
         public DbSet<User> Users { get; set; }
 
         public DbSet<NameOfProject> NamesOfProjects { get; set; }
+
+        public DbSet<ProjectUser> ProjectUsers { get; set; }
     }
 }

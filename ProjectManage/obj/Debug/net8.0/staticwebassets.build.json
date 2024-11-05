@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "reKeiZdIngavDDusUfj1rqZh5MqUJ+KP1fLTmFsHh+4=",
+  "Hash": "U9djdcrM1C9OBZ54vs8GHXpTl3RQLtt/18AUPGHeTis=",
   "Source": "ProjectManage",
   "BasePath": "_content/ProjectManage",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ProjectManage.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Adding.css",
+      "SourceId": "ProjectManage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\",
+      "BasePath": "_content/ProjectManage",
+      "RelativePath": "css/Adding.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Adding.css"
     },
     {
       "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",

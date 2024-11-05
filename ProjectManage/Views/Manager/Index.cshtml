@@ -1,4 +1,4 @@
-﻿@model NameOfProject
+﻿@model ProjectManage.Models.NameOfProject
 @{
     ViewData["Title"] = "Manager";
 }
@@ -7,6 +7,7 @@
 
 <div class="project-container">
     <form method="post" asp-controller="Manager" asp-action="Create">
+
         <label asp-for="name">Name of Project:</label>
         <input asp-for="name" type="text" id="name" name="name" required><br>
         <span asp-validation-for="name" class="text-danger"></span> <!-- Вивід помилки -->

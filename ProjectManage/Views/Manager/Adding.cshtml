@@ -1,1 +1,40 @@
-﻿
+﻿@model ProjectManage.Models.ProjectUser
+
+@{
+    ViewData["Title"] = "Add Participant";
+}
+<link rel="stylesheet" href="~/css/Adding.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="project-header">
+    <h1 class="Title">Add Participant</h1>
+</div>
+
+<div class="project-container">
+    <form method="post" asp-controller="Manager" asp-action="AddingParticipants">
+        <label for="nickname">Nickname:</label>
+        <input for="nickname" type="text" id="nickname" required /><br />
+
+        <label for="password">Password:</label>
+        <input for="password" type="password" id="password" required /><br />
+
+        <label asp-for="role">Role:</label>
+        <input asp-for="role" type="text" id="role" required /><br />
+        <span asp-validation-for="role" class="text-danger"></span>
+
+        <label asp-for="tasks">Tasks:</label>
+        <input asp-for="tasks" type="text" id="tasks" required /><br />
+        <span asp-validation-for="tasks" class="text-danger"></span>
+
+        @if (Model?.nameofproject.Id != null)
+        {
+            <input type="hidden" name="projectId" value="@Model.nameofproject.Id" />
+        }
+        else
+        {
+            <p>Error: Project ID is not available.</p>
+        }
+
+        <button type="submit" class="add-button">Add +</button>
+    </form>
+</div>

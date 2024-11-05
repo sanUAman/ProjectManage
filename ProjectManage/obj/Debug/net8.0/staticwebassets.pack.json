@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ProjectManage.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Adding.css",
+      "PackagePath": "staticwebassets\\css\\Adding.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
       "PackagePath": "staticwebassets\\css\\Manager.css"
     },
