@@ -9,26 +9,38 @@
 
 
 <div class="project-header">
-    <h1 class="nameofproject">Name of project - "@Model.name"</h1>
+    <h1 class="nameofproject">Name of project - "@Model.Name"</h1>
+    <h2 class="idofproject">Id of project - "@Model.Id"</h2>
 </div>
 
 <form method="post" asp-controller="Manager" asp-action="AddingRedirect">
 
     <input type="hidden" asp-for="@Model.Id" />
-    <input type="hidden" asp-for="@Model.name" />
+    <input type="hidden" asp-for="@Model.Name" />
 
     <div class="project-body">
         <div class="info-container">
             <div class="participants-container">
                 <div class="participants-label">Participants:</div>
                 <div class="participants" id="participantsContainer">
-                    <!-- List of participants will be added here -->
+                    @if (ViewBag.Participants != null)
+                    {
+                        foreach (var participant in ViewBag.Participants)
+                        {
+                            <a href="/User/Profile/@participant.Id" class="participant-card">
+                                @participant.nickname
+                            </a>
+                        }
+                    }
                 </div>
                 <button type="submit" class="add-button">Add Participant</button>
             </div>
 
-            <div class="diagram" id="diagramContainer">
-                <!-- Diagram parts will be dynamically added here -->
+            <div class="progress-container">
+                <div class="progress-label">Progress:</div>
+                <div class="progress" id="diagramContainer">
+                    <!-- Diagram parts will be dynamically added here -->
+                </div>
             </div>
         </div>
     </div>

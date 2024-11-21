@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Зміна для підняття контенту вище */
+    justify-content: flex-start;
     height: 100%;
     margin: 0;
     background-color: var(--bg-color);
@@ -20,18 +20,19 @@ body {
     color: #f1e5da;
 }
 
+.idofproject {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+    color: #f1e5da;
+}
+
 .info-container {
     display: flex;
     justify-content: space-between;
     gap: 350px;
     align-items: center;
-    margin-top: 150px;
-}
-
-.participants-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 100px;
 }
 
 .participants-label {
@@ -41,21 +42,40 @@ body {
     color: #f1e5da;
 }
 
-.participants {
-    border: 3px solid #5b442e;
-    width: 250px;
-    height: 400px;
-    padding: 10px;
+.participants-container {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    background-color: #453221;
+    align-items: center;
 }
 
-    .participants p {
-        margin: 0;
-        padding: 5px;
-        word-wrap: break-word;
+.participants {
+    width: 250px;
+    height: 450px;
+    overflow-y: auto;
+    border: 2px solid #5b442e;
+    border-radius: 10px;
+    background-color: #453221;
+    padding: 10px;
+}
+
+.participant-card {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #996633;
+    border-radius: 10px;
+    background-color: #cc9933;
+    color: #342619;
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .participant-card:hover {
+        background-color: #a9802d;
+        color: #fff;
+        cursor: pointer;
     }
 
 .add-button {
@@ -75,7 +95,20 @@ body {
         background-color: #a9802d;
     }
 
-.diagram {
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #f1e5da;
+}
+
+.progress {
     position: relative;
     width: 375px;
     height: 375px;
@@ -84,24 +117,3 @@ body {
     border: 3px solid #5b442e;
     clip-path: circle(50% at 50% 50%);
 }
-
-.slice {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    clip: rect(0px, 200px, 200px, 100px);
-    transform-origin: 50% 50%;
-    border-radius: 50%; /* Ensures that the slices fit within the circle */
-}
-
-    .slice.participant-1 {
-        background-color: #ff6347;
-    }
-
-    .slice.participant-2 {
-        background-color: #4682b4;
-    }
-
-    .slice.participant-3 {
-        background-color: #32cd32;
-    }

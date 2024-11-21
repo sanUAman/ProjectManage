@@ -6,14 +6,16 @@ namespace ProjectManage.Models
     {
         public int Id { get; set; }
 
-        public User user { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
 
-        public NameOfProject nameofproject { get; set; }
+        public int ProjectId { get; set; }
+        public string ProjectName { get; set; }
 
 
         [Required]
-        public string role { get; set; }
+        public string Role { get; set; }
 
-        public string tasks { get; set; }
+        public string Tasks { get; set; }
     }
 }

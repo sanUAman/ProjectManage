@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectManage.Models;
 using ProjectManage.Data;
+using ProjectManage.Models;
 using System.Data;
 
 namespace ProjectManage.Controllers
@@ -12,17 +12,52 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        public IActionResult Project(NameOfProject nameofproject)
+        public IActionResult EnterProject()
         {
-            return View(nameofproject);
+            return View();
         }
 
-        public IActionResult Adding(NameOfProject nameofproject)
+        [HttpPost]
+        public IActionResult EnterProject(int id, string name)
         {
-            return View(new ProjectUser() 
-            { 
-                nameofproject = nameofproject
-            });
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id && p.Name == name);
+
+            if (project == null)
+            {
+                ModelState.AddModelError("", "Project not found");
+                return View();
+            }
+
+            return RedirectToAction("Project", new { id = id, name = name });
+        }
+
+        public IActionResult Project(int id, string name)
+        {
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
+
+            if (project == null)
+            {
+                return NotFound("Project not found");
+            }
+
+            var participantIds = _context.ProjectUsers
+                .Where(pu => pu.ProjectId == id)
+                .Select(pu => pu.UserId)
+                .ToList();
+
+            var participants = _context.Users
+                .Where(u => participantIds.Contains(u.Id))
+                .ToList();
+
+            ViewBag.Participants = participants;
+
+            return View(new NameOfProject { Id = id, Name = name });
+        }
+
+        public IActionResult Adding(int id, string name)
+        {
+            var projectUser = new ProjectUser { ProjectId = id, ProjectName = name };
+            return View(projectUser);
         }
 
         private readonly ApplicationDbContext _context;
@@ -35,7 +70,7 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(NameOfProject nameofproject)
         {
-            if (string.IsNullOrEmpty(nameofproject.name))
+            if (string.IsNullOrEmpty(nameofproject.Name))
             {
                 return Redirect("/Manager");
             }
@@ -47,7 +82,7 @@ namespace ProjectManage.Controllers
 
             nameofproject.Id = maxProjectId + 1;
 
-            return RedirectToAction("Project", "Manager", nameofproject); 
+            return RedirectToAction("Project", "Manager", nameofproject);
         }
 
         [HttpPost]
@@ -57,17 +92,17 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddingParticipants(NameOfProject nameofproject, int projectId, string nickname, string password, string role, string tasks)
+        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string role, string tasks)
         {
             var user = _context.Users.FirstOrDefault(u => u.nickname == nickname && u.password == password);
 
             if (user == null)
             {
                 ModelState.AddModelError("", "User not found or incorrect credentials.");
-                return View("Adding");
+                return View("Error");
             }
 
-            bool alreadyInProject = _context.ProjectUsers.Any(pu => pu.user.Id == user.Id && pu.nameofproject.Id == projectId);
+            bool alreadyInProject = _context.ProjectUsers.Any(pu => pu.UserId == user.Id && pu.ProjectId == projectId && pu.ProjectName == projectName);
 
             if (alreadyInProject)
             {
@@ -77,16 +112,17 @@ namespace ProjectManage.Controllers
 
             var projectUser = new ProjectUser
             {
-                user = user,
-                nameofproject = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectId),
-                role = role,
-                tasks = tasks
+                UserId = user.Id,
+                ProjectId = projectId,
+                ProjectName = projectName,
+                Role = role,
+                Tasks = tasks
             };
 
             _context.ProjectUsers.Add(projectUser);
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Manager", new { nameofproject.name });
+            return RedirectToAction("Project", "Manager", new { id = projectId, name = projectName });
         }
     }
 }
