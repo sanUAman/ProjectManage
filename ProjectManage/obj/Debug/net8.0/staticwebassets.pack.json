@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\EnterProject.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\EnterProject_error.css",
+      "PackagePath": "staticwebassets\\css\\EnterProject_error.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
       "PackagePath": "staticwebassets\\css\\Manager.css"
     },

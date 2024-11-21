@@ -13,12 +13,13 @@ body {
 }
 
 .error-body {
+    margin-bottom: 50px;
     color: #f1e5da;
     font-size: 30px;
     text-align: center;
 }
 
-.back-button {
+.button {
     padding: 15px 35px;
     border: 4px solid #996633;
     text-decoration: none;
@@ -30,6 +31,6 @@ body {
     transition: background-color 0.3s ease;
 }
 
-    .back-button:hover {
+    .button:hover {
         background-color: #a9802d;
     }

@@ -12,6 +12,11 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        public IActionResult EnterProject_error()
+        {
+            return View();
+        }
+
         public IActionResult EnterProject()
         {
             return View();
@@ -24,8 +29,7 @@ namespace ProjectManage.Controllers
 
             if (project == null)
             {
-                ModelState.AddModelError("", "Project not found");
-                return View();
+                return View("EnterProject_error");
             }
 
             return RedirectToAction("Project", new { id = id, name = name });
