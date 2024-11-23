@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ProjectManage.Data;
 using ProjectManage.Models;
 using System.Data;
@@ -53,7 +54,16 @@ namespace ProjectManage.Controllers
                 .Where(u => participantIds.Contains(u.Id))
                 .ToList();
 
+            var projectUsers = _context.ProjectUsers
+                .Where(pu => pu.ProjectId == id)
+                .ToList();
+
+            int totalParticipants = projectUsers.Count;
+            int completedTasks = projectUsers.Count(pu => pu.Status);
+
             ViewBag.Participants = participants;
+
+            ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
 
             return View(new NameOfProject { Id = id, Name = name });
         }
@@ -96,11 +106,11 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string role, string tasks)
+        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string role, string tasks, bool status)
         {
             var user = _context.Users.FirstOrDefault(u => u.nickname == nickname && u.password == password);
 
-            if (user == null)
+            if (user == null || user.Id <= 0)
             {
                 ModelState.AddModelError("", "User not found or incorrect credentials.");
                 return View("Error");
@@ -119,8 +129,10 @@ namespace ProjectManage.Controllers
                 UserId = user.Id,
                 ProjectId = projectId,
                 ProjectName = projectName,
+                UserName = nickname,
                 Role = role,
-                Tasks = tasks
+                Tasks = tasks,
+                Status = status
             };
 
             _context.ProjectUsers.Add(projectUser);

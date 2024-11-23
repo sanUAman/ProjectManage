@@ -12,11 +12,13 @@
 
 <div class="project-container">
     <form method="post" asp-controller="Manager" asp-action="AddingParticipants">
+
+
         <label for="nickname">Nickname:</label>
         <input for="nickname" type="text" id="nickname" name="nickname" required /><br />
 
         <label for="password">Password:</label>
-        <input for="password" type="password" id="password" name="nickname" required /><br />
+        <input for="password" type="password" id="password" name="password" required /><br />
 
         <label asp-for="Role">Role:</label>
         <input asp-for="Role" type="text" id="Role" required /><br />
@@ -26,6 +28,10 @@
         <input asp-for="Tasks" type="text" id="Tasks" required /><br />
         <span asp-validation-for="Tasks" class="text-danger"></span>
 
+        <label asp-for="Status">Tasks:</label>
+        <input asp-for="Status" type="text" id="Status" required /><br />
+        <span asp-validation-for="Status" class="text-danger"></span>
+
         @if (Model?.ProjectId != null)
         {
             <input type="hidden" name="projectId" value="@Model.ProjectId" />
@@ -33,6 +39,15 @@
         else
         {
             <p>Error: Project ID is not available.</p>
+        }
+
+        @if (!string.IsNullOrEmpty(Model?.ProjectName))
+        {
+            <input type="hidden" name="projectName" value="@Model.ProjectName" />
+        }
+        else
+        {
+            <p>Error: Project Name is not available.</p>
         }
 
         <button type="submit" class="add-button">Add +</button>

@@ -116,4 +116,16 @@ body {
     background-color: #453221;
     border: 3px solid #5b442e;
     clip-path: circle(50% at 50% 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-percentage {
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    color: #f1e5da;
+    text-align: center;
+    pointer-events: none;
 }
