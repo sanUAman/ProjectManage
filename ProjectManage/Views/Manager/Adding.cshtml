@@ -12,7 +12,8 @@
 
 <div class="project-container">
     <form method="post" asp-controller="Manager" asp-action="AddingParticipants">
-
+        <input type="hidden" name="projectId" value="@Model.ProjectId" />
+        <input type="hidden" name="projectName" value="@Model.ProjectName" />
 
         <label for="nickname">Nickname:</label>
         <input for="nickname" type="text" id="nickname" name="nickname" required /><br />
@@ -28,27 +29,9 @@
         <input asp-for="Tasks" type="text" id="Tasks" required /><br />
         <span asp-validation-for="Tasks" class="text-danger"></span>
 
-        <label asp-for="Status">Tasks:</label>
+        <label asp-for="Status">Status:</label>
         <input asp-for="Status" type="text" id="Status" required /><br />
         <span asp-validation-for="Status" class="text-danger"></span>
-
-        @if (Model?.ProjectId != null)
-        {
-            <input type="hidden" name="projectId" value="@Model.ProjectId" />
-        }
-        else
-        {
-            <p>Error: Project ID is not available.</p>
-        }
-
-        @if (!string.IsNullOrEmpty(Model?.ProjectName))
-        {
-            <input type="hidden" name="projectName" value="@Model.ProjectName" />
-        }
-        else
-        {
-            <p>Error: Project Name is not available.</p>
-        }
 
         <button type="submit" class="add-button">Add +</button>
     </form>

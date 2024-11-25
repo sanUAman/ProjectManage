@@ -69,12 +69,11 @@ body {
     font-family: 'Fredoka One', sans-serif;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 }
 
     .participant-card:hover {
         background-color: #a9802d;
-        color: #fff;
         cursor: pointer;
     }
 

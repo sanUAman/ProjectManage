@@ -27,7 +27,7 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a href="/User/Profile/@participant.Id" class="participant-card">
+                            <a class="participant-card" asp-controller="Manager" asp-action="Configuration" asp-route-userId="@participant.Id" asp-route-projectId="@Model.Id">
                                 @participant.nickname
                             </a>
                         }

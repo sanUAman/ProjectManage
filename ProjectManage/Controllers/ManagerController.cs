@@ -74,6 +74,63 @@ namespace ProjectManage.Controllers
             return View(projectUser);
         }
 
+        [HttpGet]
+        public IActionResult Configuration(int userId, int projectId)
+        {
+            // Отримуємо дані учасника за UserId і ProjectId
+            var participant = _context.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && pu.ProjectId == projectId);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found");
+            }
+
+            return View(participant);
+        }
+
+        [HttpPost]
+        public IActionResult SaveParticipant(ProjectUser updatedParticipant)
+        {
+            var existingParticipant = _context.ProjectUsers
+                .FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
+
+            if (existingParticipant == null)
+            {
+                return NotFound("Participant not found");
+            }
+
+            // Оновлюємо дані учасника
+            existingParticipant.Role = updatedParticipant.Role;
+            existingParticipant.Tasks = updatedParticipant.Tasks;
+            existingParticipant.Status = updatedParticipant.Status;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Project", "Manager", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName });
+        }
+
+        [HttpPost]
+        public IActionResult DeleteParticipant(int participantId)
+        {
+            var participant = _context.ProjectUsers.FirstOrDefault(pu => pu.Id == participantId);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found");
+            }
+
+            _context.ProjectUsers.Remove(participant);
+            _context.SaveChanges();
+
+            return RedirectToAction("Project", "Manager", new { id = participant.ProjectId, name = participant.ProjectName });
+        }
+
+        [HttpPost]
+        public IActionResult AddingRedirect(NameOfProject nameofproject)
+        {
+            return RedirectToAction("Adding", "Manager", nameofproject);
+        }
+
         private readonly ApplicationDbContext _context;
 
         public ManagerController(ApplicationDbContext context)
@@ -100,21 +157,9 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddingRedirect(NameOfProject nameofproject)
-        {
-            return RedirectToAction("Adding", "Manager", nameofproject);
-        }
-
-        [HttpPost]
         public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string role, string tasks, bool status)
         {
             var user = _context.Users.FirstOrDefault(u => u.nickname == nickname && u.password == password);
-
-            if (user == null || user.Id <= 0)
-            {
-                ModelState.AddModelError("", "User not found or incorrect credentials.");
-                return View("Error");
-            }
 
             bool alreadyInProject = _context.ProjectUsers.Any(pu => pu.UserId == user.Id && pu.ProjectId == projectId && pu.ProjectName == projectName);
 
@@ -130,6 +175,7 @@ namespace ProjectManage.Controllers
                 ProjectId = projectId,
                 ProjectName = projectName,
                 UserName = nickname,
+                UserPassword = password,
                 Role = role,
                 Tasks = tasks,
                 Status = status

@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\Adding.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Configuration.css",
+      "PackagePath": "staticwebassets\\css\\Configuration.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\EnterProject.css",
       "PackagePath": "staticwebassets\\css\\EnterProject.css"
     },
