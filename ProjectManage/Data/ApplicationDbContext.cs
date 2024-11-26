@@ -7,10 +7,10 @@ namespace ProjectManage.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Participant> Participants { get; set; }
 
         public DbSet<NameOfProject> NamesOfProjects { get; set; }
 
-        public DbSet<ProjectUser> ProjectUsers { get; set; }
+        public DbSet<ProjectParticipant> ProjectParticipants { get; set; }
     }
 }

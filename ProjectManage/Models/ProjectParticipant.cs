@@ -2,13 +2,13 @@
 
 namespace ProjectManage.Models
 {
-    public class ProjectUser
+    public class ProjectParticipant
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
+        public int ParticipantId { get; set; }
+        public string ParticipantName { get; set; }
+        public string ParticipantPassword { get; set; }
 
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }

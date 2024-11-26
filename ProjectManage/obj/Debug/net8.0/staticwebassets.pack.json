@@ -17,8 +17,8 @@
       "PackagePath": "staticwebassets\\css\\EnterProject.css"
     },
     {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\EnterProject_error.css",
-      "PackagePath": "staticwebassets\\css\\EnterProject_error.css"
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Home.css",
+      "PackagePath": "staticwebassets\\css\\Home.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
@@ -29,20 +29,16 @@
       "PackagePath": "staticwebassets\\css\\Nickname_error.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Participant.css",
+      "PackagePath": "staticwebassets\\css\\Participant.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Password_error.css",
       "PackagePath": "staticwebassets\\css\\Password_error.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Project.css",
       "PackagePath": "staticwebassets\\css\\Project.css"
-    },
-    {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\RolePage.css",
-      "PackagePath": "staticwebassets\\css\\RolePage.css"
-    },
-    {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\User.css",
-      "PackagePath": "staticwebassets\\css\\User.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\favicon.ico",

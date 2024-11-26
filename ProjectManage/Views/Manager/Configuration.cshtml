@@ -1,4 +1,4 @@
-﻿@model ProjectManage.Models.ProjectUser
+﻿@model ProjectManage.Models.ProjectParticipant
 
 @{
     ViewData["Title"] = "Configuration";
@@ -16,11 +16,11 @@
         <input type="hidden" asp-for="ProjectId" />
         <input type="hidden" asp-for="ProjectName" />
 
-        <label asp-for="UserName">Nickname:</label>
-        <input asp-for="UserName" type="text" id="nickname" name="nickname" readonly /><br />
+        <label asp-for="ParticipantName">Nickname:</label>
+        <input asp-for="ParticipantName" type="text" id="nickname" name="nickname" readonly /><br />
 
-        <label asp-for="UserPassword">Password:</label>
-        <input asp-for="UserPassword" type="text" id="password" name="password" readonly /><br />
+        <label asp-for="ParticipantPassword">Password:</label>
+        <input asp-for="ParticipantPassword" type="text" id="password" name="password" readonly /><br />
 
         <label asp-for="Role">Role:</label>
         <input asp-for="Role" type="text" id="Role" required /><br />

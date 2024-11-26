@@ -26,6 +26,6 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.role-button:hover {
-    background-color: #a9802d;
-}
+    .role-button:hover {
+        background-color: #a9802d;
+    }

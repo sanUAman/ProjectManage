@@ -1,6 +1,6 @@
 ﻿namespace ProjectManage.Models
 {
-    public class User
+    public class Participant
     {
         public int Id { get; set; }
 

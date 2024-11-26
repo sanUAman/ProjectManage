@@ -1,12 +1,12 @@
-﻿@model User
+﻿@model Participant
 @{
-    ViewData["Title"] = "User";
+    ViewData["Title"] = "ProjeX";
 }
-<link rel="stylesheet" href="~/css/User.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Participant.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 <div class="login-container">
-    <form method="post" asp-controller="User" asp-action="Registration">
+    <form method="post" asp-controller="Participant" asp-action="Registration">
         <label asp-for="nickname">Nickname:</label>
         <input asp-for="nickname" type="text" id="nickname" name="nickname" required /><br>
         <span asp-validation-for="nickname" class="text-danger"></span> <!-- Вивід помилки -->
