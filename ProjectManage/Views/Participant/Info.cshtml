@@ -1,0 +1,45 @@
+﻿@model ProjectManage.Models.ProjectParticipant
+
+@{
+    ViewData["Title"] = "ProjeX";
+    bool isCurrentUser = ViewBag.CurrentNickname == Model.ParticipantName;
+}
+<link rel="stylesheet" href="~/css/Info.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="info-header">
+    <h1 class="Title">Information</h1>
+</div>
+
+<div class="info-container">
+    <form method="post" asp-controller="Participant" asp-action="Save">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProjectId" />
+        <input type="hidden" asp-for="ProjectName" />
+
+        <label asp-for="ParticipantName">Nickname:</label>
+        <input asp-for="ParticipantName" type="text" id="nickname" name="nickname" readonly /><br />
+
+        <label asp-for="Role">Role:</label>
+        <input asp-for="Role" type="text" id="Role" readonly /><br />
+        <span asp-validation-for="Role" class="text-danger"></span>
+
+        <label asp-for="Tasks">Tasks:</label>
+        <input asp-for="Tasks" type="text" id="Tasks" readonly /><br />
+        <span asp-validation-for="Tasks" class="text-danger"></span>
+
+        <label asp-for="Status">Status:</label>
+        @if (isCurrentUser)
+        {
+            <input asp-for="Status" type="text" id="Status" /><br />
+        }
+        else
+        {
+            <input asp-for="Status" type="text" readonly /><br />
+        }
+
+        <div class="button-container">
+            <button type="submit" class="save-button">Save</button>
+        </div>
+    </form>
+</div>

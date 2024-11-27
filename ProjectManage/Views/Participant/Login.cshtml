@@ -2,15 +2,16 @@
 @{
     ViewData["Title"] = "ProjeX";
 }
-<link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 <div class="header">
-    <h1 class="title">Registration</h1>
+    <h2 class="title">Login</h2>
 </div>
 
-<div class="registration-container">
-    <form method="post" asp-controller="Participant" asp-action="Registration">
+<div class="login-container">
+    <form method="post" asp-controller="Participant" asp-action="Login">
+
         <label asp-for="nickname">Nickname:</label>
         <input asp-for="nickname" type="text" id="nickname" name="nickname" required /><br>
         <span asp-validation-for="nickname" class="text-danger"></span>
@@ -20,14 +21,10 @@
         <span asp-validation-for="password" class="text-danger"></span>
 
         <div class="button-container">
-            <button type="submit" class="registration-button">Register</button>
-            <a href="/" class="back-button">Back</a>
+            <button type="submit" class="login-button">Login</button>
+            <a class="back-button" asp-controller="Participant" asp-action="Index">Back</a>
         </div>
     </form>
-</div>
-
-<div class="link-container">
-    <a class="link-button" asp-controller="Participant" asp-action="Login">Already have a profile?</a>
 </div>
 
 @section Scripts {

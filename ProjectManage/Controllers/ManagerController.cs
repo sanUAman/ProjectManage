@@ -25,7 +25,7 @@ namespace ProjectManage.Controllers
 
             if (project == null)
             {
-                return NotFound("This project doesn't exist");
+                return NotFound("This project doesn't exist!");
             }
 
             return RedirectToAction("Project", new { id = id, name = name });

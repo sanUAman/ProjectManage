@@ -3,17 +3,16 @@
 @{
     ViewData["Title"] = "ProjeX";
 }
-<link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/ParticipantProject.css" asp-append-version="true" />
 <!--  <script src="~/js/Project.js"></script> -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 
 <div class="project-header">
-    <h1 class="nameofproject">Name of project - "@Model.Name"</h1>
-    <h2 class="idofproject">Id of project - "@Model.Id"</h2>
+    <h1 class="nameofproject">@Model.Name</h1>
 </div>
 
-<form method="post" asp-controller="Manager" asp-action="AddingRedirect">
+<form method="post" asp-controller="Participant" asp-action="Info">
 
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
@@ -27,13 +26,12 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Manager" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-currentNickname="@ViewBag.Nickname">
                                 @participant.nickname
                             </a>
                         }
                     }
                 </div>
-                <button type="submit" class="add-button">Add Participant</button>
             </div>
 
             <div class="progress-container">

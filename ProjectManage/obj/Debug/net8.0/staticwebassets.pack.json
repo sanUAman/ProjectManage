@@ -17,28 +17,36 @@
       "PackagePath": "staticwebassets\\css\\EnterProject.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\ExistingProjects.css",
+      "PackagePath": "staticwebassets\\css\\ExistingProjects.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Home.css",
       "PackagePath": "staticwebassets\\css\\Home.css"
+    },
+    {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Info.css",
+      "PackagePath": "staticwebassets\\css\\Info.css"
+    },
+    {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
       "PackagePath": "staticwebassets\\css\\Manager.css"
     },
     {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Nickname_error.css",
-      "PackagePath": "staticwebassets\\css\\Nickname_error.css"
-    },
-    {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Participant.css",
-      "PackagePath": "staticwebassets\\css\\Participant.css"
-    },
-    {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Password_error.css",
-      "PackagePath": "staticwebassets\\css\\Password_error.css"
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\ParticipantProject.css",
+      "PackagePath": "staticwebassets\\css\\ParticipantProject.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Project.css",
       "PackagePath": "staticwebassets\\css\\Project.css"
+    },
+    {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Registration.css",
+      "PackagePath": "staticwebassets\\css\\Registration.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\favicon.ico",

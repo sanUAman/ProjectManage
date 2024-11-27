@@ -42,16 +42,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxQcm9qZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/ExistingProjects.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcRXhpc3RpbmdQcm9qZWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Nickname_error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcTmlja25hbWVfZXJyb3IuY3NodG1s
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcSW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Password_error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcUGFzc3dvcmRfZXJyb3IuY3NodG1s
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/ParticipantProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcUGFydGljaXBhbnRQcm9qZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Shared/Error.cshtml]
