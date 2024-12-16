@@ -20,6 +20,7 @@ namespace ProjectManage.Models
         [Required]
         public string Tasks { get; set; }
 
+        [Required]
         public bool Status { get; set; }
     }
 }

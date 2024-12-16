@@ -128,3 +128,36 @@ body {
     text-align: center;
     pointer-events: none;
 }
+
+.main-page-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.main-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #996633;
+    border-radius: 50%;
+    background-color: #cc9933;
+    color: #342619;
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+    .main-page:hover {
+        background-color: #a9802d;
+        cursor: pointer;
+    }
+
+    .main-page a {
+        text-decoration: none;
+        color: #fff0da;
+        font-size: 20px;
+    }
