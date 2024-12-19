@@ -39,6 +39,12 @@
             <div class="progress-container">
                 <div class="progress-label">Progress:</div>
                 <div class="progress" id="diagramContainer">
+                    <div class="wave-container" style="--progress: @(80 - ViewBag.CompletionPercentage)%;">
+                        <svg class="wave" viewBox="0 -5 1000 100" preserveAspectRatio="none">
+                            <path class="wave-path" d="M0,50 Q25,0 50,50 T100,50 T150,50 T200,50 T250,50 T300,50 T350,50 T400,50 T450,50 T500,50 T550,50 T600,50 T650,50 T700,50 T750,50 T800,50 T850,50 T900,50 T950,50 T1000,50 L1000,100 L0,100 Z"></path>
+                        </svg>
+                    </div>
+                    <div class="fill-rect" style="--progress: @(100 - ViewBag.CompletionPercentage)%;"></div>
                     <div class="progress-percentage">
                         @ViewBag.CompletionPercentage%
                     </div>

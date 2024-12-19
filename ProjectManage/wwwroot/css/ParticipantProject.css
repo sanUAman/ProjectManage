@@ -97,10 +97,53 @@ body {
     border-radius: 50%;
     background-color: #453221;
     border: 3px solid #5b442e;
-    clip-path: circle(50% at 50% 50%);
+    overflow: hidden; /* Хвиля обрізається за межами кола */
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.wave-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(var(--progress)); /* Підйом хвилі залежно від прогресу */
+    transition: transform 0.5s ease; /* Плавна анімація підйому хвилі */
+}
+
+.wave {
+    position: absolute;
+    bottom: auto;
+    z-index: 2;
+    width: 400%; /* Подвоєна ширина для безшовної анімації */
+    height: 25%; /* Висота хвилі */
+    animation: wave-move 4s linear infinite; /* Плавна безкінечна анімація */
+}
+
+.wave-path {
+    fill: #996633; /* Колір хвилі */
+}
+
+@keyframes wave-move {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-40%); /* Рух на ширину хвилі */
+    }
+}
+
+.fill-rect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #996633; /* Колір заповнення (такий самий, як хвиля) */
+    z-index: 1; /* За хвилею */
+    height: 100%;
+    transform: translateY(var(--progress)); /* Підйом хвилі залежно від прогресу */
+    transition: transform 0.5s ease;
 }
 
 .progress-percentage {
@@ -110,6 +153,7 @@ body {
     color: #f1e5da;
     text-align: center;
     pointer-events: none;
+    z-index: 3;
 }
 
 .main-page-container {
