@@ -113,8 +113,15 @@ namespace ProjectManage.Controllers
             return View(participant);
         }
 
-        public IActionResult Save(ProjectParticipant updatedParticipant)
+        public IActionResult Save(ProjectParticipant updatedParticipant, string nickname)
         {
+            string currentUserNickname = nickname;
+
+            if (string.IsNullOrEmpty(currentUserNickname))
+            {
+                return Unauthorized("You are not logged in!");
+            }
+
             var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
 
             if (existingParticipant == null)
@@ -124,11 +131,11 @@ namespace ProjectManage.Controllers
 
             existingParticipant.Status = updatedParticipant.Status;
 
-            ViewBag.CurrentNickname = updatedParticipant.ParticipantName;
+            ViewBag.CurrentNickname = currentUserNickname;
 
             _context.SaveChanges();
 
-            return RedirectToAction("ParticipantProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = existingParticipant.ParticipantName });
+            return RedirectToAction("ParticipantProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = currentUserNickname });
         }
     }
 }

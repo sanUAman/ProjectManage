@@ -13,12 +13,13 @@
 
 <div class="info-container">
     <form method="post" asp-controller="Participant" asp-action="Save">
+        <input type="hidden" name="nickname" value="@ViewBag.CurrentNickname" />
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
         <input type="hidden" asp-for="ProjectName" />
 
         <label asp-for="ParticipantName">Nickname:</label>
-        <input asp-for="ParticipantName" type="text" id="nickname" name="nickname" readonly /><br />
+        <input asp-for="ParticipantName" type="text" id="nickname" name="ParticipantName" readonly /><br />
 
         <label asp-for="Role">Role:</label>
         <input asp-for="Role" type="text" id="Role" readonly /><br />
