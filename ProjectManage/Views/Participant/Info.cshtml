@@ -32,11 +32,11 @@
         <label asp-for="Status">Status:</label>
         @if (isCurrentUser)
         {
-            <input asp-for="Status" type="text" id="Status" /><br />
+            <input asp-for="Status" type="checkbox" id="Status" /><br />
         }
         else
         {
-            <input asp-for="Status" type="text" readonly /><br />
+            <input asp-for="Status" type="checkbox" disabled /><br />
         }
 
         <div class="button-container">
