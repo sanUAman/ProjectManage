@@ -8,6 +8,23 @@
     margin: 0;
 }
 
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #261c12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 100px;
+    color: #f1dcbe;
+    transition: transform 0.5s ease-in-out;
+    z-index: 10;
+}
+
 .title {
     text-align: center;
     margin-top: 0;
@@ -16,7 +33,7 @@
     color: #f1e5da;
 }
 
-.registration-container {
+.sign-up-container {
     border: 3px solid #5b442e;
     padding: 40px;
     border-radius: 10px;
@@ -50,7 +67,7 @@ input {
     gap: 10px;
 }
 
-.registration-button {
+.sign-up-button {
     padding: 10px 20px;
     border: 4px solid #996633;
     background-color: #cc9933;
@@ -62,7 +79,7 @@ input {
     transition: background-color 0.3s ease;
 }
 
-    .registration-button:hover {
+    .sign-up-button:hover {
         background-color: #a9802d;
     }
 

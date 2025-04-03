@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -5,18 +11,52 @@ body {
     height: 100vh;
     background-color: #342619;
     margin: 0;
+    overflow: hidden;
 }
 
-.role-container {
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #261c12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 100px;
+    color: #f1dcbe;
+    transition: transform 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.info-container {
     text-align: center;
     font-family: 'Fredoka One', sans-serif;
-    font-size: 25px;
+    font-size: 22px;
+    color: #cac1b9;
 }
 
-.role-button {
-    display: block;
-    margin: 30px;
-    padding: 20px 60px;
+    .info-container h1 {
+        color: #ded4cc;
+        margin-bottom: 20px;
+    }
+
+    .info-container p {
+        line-height: 1.5;
+    }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.start-button {
+    padding: 10px 35px;
     border: 4px solid #996633;
     background-color: #cc9933;
     cursor: pointer;
@@ -26,6 +66,6 @@ body {
     transition: background-color 0.3s ease;
 }
 
-    .role-button:hover {
+    .start-button:hover {
         background-color: #a9802d;
     }

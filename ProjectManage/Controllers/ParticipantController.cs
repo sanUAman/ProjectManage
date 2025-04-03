@@ -6,12 +6,14 @@ namespace ProjectManage.Controllers
 {
     public class ParticipantController : Controller
     {
-        public IActionResult Index()
+        [Route("SignUp")]
+        public IActionResult SignUp()
         {
             return View();
         }
 
-        public IActionResult Login()
+        [Route("SignIn")]
+        public IActionResult SignIn()
         {
             return View();
         }
@@ -24,7 +26,7 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registration(Participant participant)
+        public IActionResult SignUpController(Participant participant)
         {
             if (_context.Participants.Any(p => p.nickname == participant.nickname))
             {
@@ -43,7 +45,7 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string nickname, string password)
+        public IActionResult SignInController(string nickname, string password)
         {
             var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
 
