@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\js\\EP.js",
+      "PackagePath": "staticwebassets\\js\\EP.js"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\js\\Home.js",
       "PackagePath": "staticwebassets\\js\\Home.js"
     },

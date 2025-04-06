@@ -13,7 +13,6 @@ namespace ProjectManage.Models
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
 
-
         [Required]
         public string Role { get; set; }
 

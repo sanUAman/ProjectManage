@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjectManage.Models;
 using ProjectManage.Data;
+using System.Data;
 
 namespace ProjectManage.Controllers
 {
@@ -67,7 +68,11 @@ namespace ProjectManage.Controllers
             }
 
             var projects = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName }).Distinct().ToList();
+            var roles = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Role }).Distinct().ToList();
+            var tasks = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Tasks }).Distinct().ToList();
 
+            ViewBag.Tasks = tasks;
+            ViewBag.Roles = roles;
             ViewBag.Projects = projects;
             ViewBag.Nickname = nickname;
 
