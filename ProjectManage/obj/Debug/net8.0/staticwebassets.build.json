@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SLo/iQRWJwFQENnykKFuBz4r4NvZm79vz/hl5K2rr0E=",
+  "Hash": "GgX/SPL/cNxSOdXPsoLQ7VQ9hTViTn+ZznPOfxGQOOM=",
   "Source": "ProjectManage",
   "BasePath": "_content/ProjectManage",
   "Mode": "Default",
@@ -281,25 +281,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\js\\EP.js",
-      "SourceId": "ProjectManage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\",
-      "BasePath": "_content/ProjectManage",
-      "RelativePath": "js/EP.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\EP.js"
     },
     {
       "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\js\\Home.js",

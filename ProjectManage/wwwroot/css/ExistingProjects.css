@@ -79,7 +79,7 @@ header {
 }
 
 .projects-container,
-.roles-container,
+.manager-container,
 .tasks-container {
     display: flex;
     flex-direction: column;
@@ -92,7 +92,7 @@ header {
     margin-bottom: 10px;
 }
 
-.projects, .roles, .tasks {
+.projects, .manager-projects, .tasks {
     width: 250px;
     height: 450px;
     overflow-y: auto;
@@ -103,7 +103,7 @@ header {
 }
 
 .project-card,
-.role-card,
+.manager-card,
 .task-card {
     display: block;
     padding: 10px;

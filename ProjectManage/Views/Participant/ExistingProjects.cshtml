@@ -26,7 +26,7 @@
 
         <div class="projects-container">
             <div class="name-of-container">
-                <p>Projects</p>
+                <p>You participate in:</p>
             </div>
             <div class="projects">
                 @if (ViewBag.Projects != null)
@@ -46,17 +46,17 @@
         <input type="hidden" name="nickname" value="@ViewBag.nickname" />
         <input type="hidden" name="password" value="@ViewBag.password" />
 
-        <div class="roles-container">
+        <div class="manager-container">
             <div class="name-of-container">
-                <p>Roles</p>
+                <p>You are manager in:</p>
             </div>
-            <div class="roles">
-                @if (ViewBag.Roles != null)
+            <div class="manager-projects">
+                @if (ViewBag.ManagingProjects != null)
                 {
-                    foreach (var role in ViewBag.Roles)
+                    foreach (var managingProject in ViewBag.ManagingProjects)
                     {
-                        <a class="role-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@role.ProjectName" asp-route-id="@role.ProjectId" asp-route-nickname="@nickname">
-                            @role.Role
+                        <a class="manager-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@managingProject.ProjectName" asp-route-id="@managingProject.ProjectId" asp-route-nickname="@nickname">
+                            @managingProject.ProjectName
                         </a>
                     }
                 }

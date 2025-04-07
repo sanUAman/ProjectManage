@@ -68,11 +68,11 @@ namespace ProjectManage.Controllers
             }
 
             var projects = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName }).Distinct().ToList();
-            var roles = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Role }).Distinct().ToList();
+            var managingProjects = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id && pu.Role == "CEO").Select(pu => new { pu.ProjectId, pu.ProjectName}).Distinct().ToList();
             var tasks = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Tasks }).Distinct().ToList();
 
             ViewBag.Tasks = tasks;
-            ViewBag.Roles = roles;
+            ViewBag.ManagingProjects = managingProjects;
             ViewBag.Projects = projects;
             ViewBag.Nickname = nickname;
 
