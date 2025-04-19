@@ -1,0 +1,61 @@
+﻿@model ProjectManage.Models.NameOfProject
+
+@{
+    ViewData["Title"] = "ProjeX";
+}
+<link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
+<!--  <script src="~/js/Project.js"></script> -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+
+<div class="project-header">
+    <h1 class="nameofproject">Name of project - "@Model.Name"</h1>
+    <h2 class="idofproject">Id of project - "@Model.Id"</h2>
+</div>
+
+<form method="post" asp-controller="Manager" asp-action="AddingRedirect">
+
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" asp-for="@Model.Name" />
+
+    <div class="project-body">
+        <div class="info-container">
+            <div class="participants-container">
+                <div class="participants-label">Participants:</div>
+                <div class="participants" id="participantsContainer">
+                    @if (ViewBag.Participants != null)
+                    {
+                        foreach (var participant in ViewBag.Participants)
+                        {
+                            <a class="participant-card" asp-controller="Manager" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id">
+                                @participant.nickname
+                            </a>
+                        }
+                    }
+                </div>
+                <button type="submit" class="add-button">Add Participant</button>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">Progress:</div>
+                <div class="progress" id="diagramContainer">
+                    <div class="wave-container" style="--progress: @(80 - ViewBag.CompletionPercentage)%;">
+                        <svg class="wave" viewBox="0 -5 1000 100" preserveAspectRatio="none">
+                            <path class="wave-path" d="M0,50 Q25,0 50,50 T100,50 T150,50 T200,50 T250,50 T300,50 T350,50 T400,50 T450,50 T500,50 T550,50 T600,50 T650,50 T700,50 T750,50 T800,50 T850,50 T900,50 T950,50 T1000,50 L1000,100 L0,100 Z"></path>
+                        </svg>
+                    </div>
+                    <div class="fill-rect" style="--progress: @(100 - ViewBag.CompletionPercentage)%;"></div>
+                    <div class="progress-percentage">
+                        @ViewBag.CompletionPercentage%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="main-page-container">
+    <div class="main-page">
+        <a href="/">🏠︎</a>
+    </div>
+</div>

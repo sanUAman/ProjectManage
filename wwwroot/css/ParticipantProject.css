@@ -1,0 +1,190 @@
+﻿:root {
+    --bg-color: #342619;
+}
+
+body {
+    font-family: 'Fredoka One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    margin: 0;
+    background-color: var(--bg-color);
+}
+
+.nameofproject {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
+    color: #f1e5da;
+}
+
+.idofproject {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+    color: #f1e5da;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 350px;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.participants-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.participants-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #f1e5da;
+}
+
+.participants {
+    width: 250px;
+    height: 450px;
+    overflow-y: auto;
+    border: 2px solid #5b442e;
+    border-radius: 10px;
+    background-color: #453221;
+    padding: 10px;
+}
+
+.participant-card {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #996633;
+    border-radius: 10px;
+    background-color: #cc9933;
+    color: #342619;
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+    .participant-card:hover {
+        background-color: #a9802d;
+        cursor: pointer;
+    }
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #f1e5da;
+}
+
+.progress {
+    position: relative;
+    width: 375px;
+    height: 375px;
+    border-radius: 50%;
+    background-color: #453221;
+    border: 3px solid #5b442e;
+    overflow: hidden; /* Хвиля обрізається за межами кола */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wave-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(var(--progress)); /* Підйом хвилі залежно від прогресу */
+    transition: transform 0.5s ease; /* Плавна анімація підйому хвилі */
+}
+
+.wave {
+    position: absolute;
+    bottom: auto;
+    z-index: 2;
+    width: 400%; /* Подвоєна ширина для безшовної анімації */
+    height: 25%; /* Висота хвилі */
+    animation: wave-move 4s linear infinite; /* Плавна безкінечна анімація */
+}
+
+.wave-path {
+    fill: #996633; /* Колір хвилі */
+}
+
+@keyframes wave-move {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-40%); /* Рух на ширину хвилі */
+    }
+}
+
+.fill-rect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #996633; /* Колір заповнення (такий самий, як хвиля) */
+    z-index: 1; /* За хвилею */
+    height: 100%;
+    transform: translateY(var(--progress)); /* Підйом хвилі залежно від прогресу */
+    transition: transform 0.5s ease;
+}
+
+.progress-percentage {
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    color: #f1e5da;
+    text-align: center;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.main-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.main-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #996633;
+    border-radius: 50%;
+    background-color: #cc9933;
+    color: #342619;
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+    .main-page:hover {
+        background-color: #a9802d;
+        cursor: pointer;
+    }
+
+    .main-page a {
+        text-decoration: none;
+        color: #fff0da;
+        font-size: 20px;
+    }

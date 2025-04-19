@@ -1,0 +1,101 @@
+﻿@model ProjectManage.Models.ProjectParticipant
+
+@{
+    ViewData["Title"] = "ProjeX";
+    var nickname = ViewBag.Nickname;
+}
+
+<link rel="stylesheet" href="~/css/ExistingProjects.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<header>
+    <div class="logo" onclick="location.reload()">ProjeX</div>
+    <nav class="menu">
+        <a href="#">@nickname</a>
+    </nav>
+</header>
+
+<div class="header-with-line">
+    <div class="line"></div>
+</div>
+
+<div class="container-wrapper">
+    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
+
+        <div class="projects-container">
+            <div class="name-of-container">
+                <p>You participate in:</p>
+            </div>
+            <div class="projects">
+                @if (ViewBag.Projects != null)
+                {
+                    foreach (var project in ViewBag.Projects)
+                    {
+                        <a class="project-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@project.ProjectName" asp-route-id="@project.ProjectId" asp-route-nickname="@nickname">
+                            @project.ProjectName
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </form>
+
+    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
+
+        <div class="manager-container">
+            <div class="name-of-container">
+                <p>You are manager in:</p>
+            </div>
+            <div class="manager-projects">
+                @if (ViewBag.ManagingProjects != null)
+                {
+                    foreach (var managingProject in ViewBag.ManagingProjects)
+                    {
+                        <a class="manager-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@managingProject.ProjectName" asp-route-id="@managingProject.ProjectId" asp-route-nickname="@nickname">
+                            @managingProject.ProjectName
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </form>
+
+    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
+
+        <div class="tasks-container">
+            <div class="name-of-container">
+                <p>Tasks</p>
+            </div>
+            <div class="tasks">
+                @if (ViewBag.Tasks != null)
+                {
+                    foreach (var task in ViewBag.Tasks)
+                    {
+                        <a class="task-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@task.ProjectName" asp-route-id="@task.ProjectId" asp-route-nickname="@nickname">
+                            @task.Tasks
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+}

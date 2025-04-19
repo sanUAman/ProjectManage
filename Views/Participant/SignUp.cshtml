@@ -1,0 +1,40 @@
+﻿@model ProjectManage.Models.Participant
+@{
+    ViewData["Title"] = "ProjeX";
+}
+<link rel="stylesheet" href="~/css/SignUp.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<div class="intro-screen" id="intro">ProjeX</div>
+
+<div class="header">
+    <h1 class="title" data-aos="fade-up" data-aos-duration="1500">Sign Up</h1>
+</div>
+
+<div class="sign-up-container" data-aos="fade-up" data-aos-duration="2000">
+    <form method="post" asp-controller="Participant" asp-action="SignUpController">
+        <label asp-for="nickname">Nickname:</label>
+        <input asp-for="nickname" type="text" id="nickname" name="nickname" required /><br>
+        <span asp-validation-for="nickname" class="text-danger"></span>
+
+        <label asp-for="password">Password:</label>
+        <input asp-for="password" type="password" id="password" name="password" required /><br>
+        <span asp-validation-for="password" class="text-danger"></span>
+
+        <div class="button-container">
+            <button type="submit" class="sign-up-button">Submit</button>
+            <a href="/" class="back-button">Back</a>
+        </div>
+    </form>
+</div>
+
+<div class="link-container">
+    <a class="link-button" href="/SignIn" data-aos="fade-up" data-aos-duration="2500">Already have a profile?</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="js\Home.js" asp-append-version="true"></script>
+}

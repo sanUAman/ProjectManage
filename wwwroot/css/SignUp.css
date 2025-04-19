@@ -1,0 +1,121 @@
+﻿body {
+    font-family: 'Fredoka One', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #342619;
+    margin: 0;
+}
+
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #261c12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 100px;
+    color: #f1dcbe;
+    transition: transform 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 50px;
+    font-size: 50px;
+    color: #f1e5da;
+}
+
+.sign-up-container {
+    border: 3px solid #5b442e;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #453221;
+    font-family: 'Fredoka One', sans-serif;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    font-size: 18px;
+    color: #f1e5da;
+}
+
+input {
+    display: block;
+    width: 300px;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    border: 2px solid #5b442e;
+    border-radius: 10px;
+    background-color: #573e28;
+    color: #fcd190;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sign-up-button {
+    padding: 10px 20px;
+    border: 4px solid #996633;
+    background-color: #cc9933;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 30px;
+    color: #f1dcbe;
+    font-family: 'Fredoka One', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+    .sign-up-button:hover {
+        background-color: #a9802d;
+    }
+
+.back-button {
+    padding: 10px 20px;
+    border: 4px solid #996633;
+    background-color: #cc9933;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 30px;
+    color: #f1dcbe;
+    font-family: 'Fredoka One', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+    .back-button:hover {
+        background-color: #a9802d;
+    }
+
+.link-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.link-button {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fcd190;
+    font-family: 'Fredoka One', sans-serif;
+    transition: color 0.1s ease;
+}
+
+    .link-button:hover {
+        color: #c2a16e;
+        text-decoration: underline;
+    }

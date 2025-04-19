@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "ProjeX";
+}
+<link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<div class="intro-screen" id="intro">ProjeX</div>
+
+<div class="info-container" id="content">
+    <h1 data-aos="fade-up" data-aos-duration="1500">Welcome!</h1>
+    <p data-aos="fade-up" data-aos-duration="2000">This site is developed to make it easier for beginners to work in a team.<br>I hope you find this tool useful.</p>
+    <div class="button-container" data-aos="fade-up" data-aos-duration="2500">
+        <a href="/SignUp" class="start-button">Start</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="js\Home.js" asp-append-version="true"></script>
+}
