@@ -43,18 +43,26 @@ header {
         display: flex;
     }
 
+        header nav p {
+            padding: 0 20px;
+            margin-top: 14px;
+            color: #f1e5da;
+            font-size: 1.2rem;
+        }
+
         header nav a {
-            padding: 15px 20px;
-            border: 3px solid #996633;
+            padding: 10px 20px;
+            border: 3px solid #5b442e;
             border-radius: 50px;
             text-decoration: none;
-            color: #838dab;
-            font-size: 1rem;
-            transition: color 0.3s;
+            color: #f1e5da;
+            background-color: #453221;
+            font-size: 1.2rem;
+            transition: background-color 0.2s ease;
         }
 
             header nav a:hover {
-                color: #64ffda;
+                background-color: #231a11;
             }
 
 .header-with-line {
@@ -119,7 +127,7 @@ header {
 }
 
     .project-card:hover,
-    .role-card:hover,
+    .manager-card:hover,
     .task-card:hover {
         background-color: #a9802d;
         cursor: pointer;
