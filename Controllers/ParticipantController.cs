@@ -80,6 +80,21 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        public IActionResult Profile(string nickname, string password)
+        {
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found!");
+            }
+
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
+            return View();
+        }
+
         public IActionResult ParticipantProject(string name, int id, string nickname)
         {
             if (string.IsNullOrEmpty(name))

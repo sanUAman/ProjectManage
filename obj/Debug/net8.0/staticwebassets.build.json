@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GgX/SPL/cNxSOdXPsoLQ7VQ9hTViTn+ZznPOfxGQOOM=",
+  "Hash": "5vXnAhOKtI1KUlh98Ro9QVZeAGKHxFd+jUIIjUMaQGU=",
   "Source": "ProjectManage",
   "BasePath": "_content/ProjectManage",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\ParticipantProject.css"
+    },
+    {
+      "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Profile.css",
+      "SourceId": "ProjectManage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\",
+      "BasePath": "_content/ProjectManage",
+      "RelativePath": "css/Profile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Profile.css"
     },
     {
       "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Project.css",

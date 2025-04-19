@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\css\\ParticipantProject.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Profile.css",
+      "PackagePath": "staticwebassets\\css\\Profile.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Project.css",
       "PackagePath": "staticwebassets\\css\\Project.css"
     },

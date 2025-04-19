@@ -15,7 +15,7 @@
     <div class="logo" onclick="location.reload()">ProjeX</div>
     <nav class="menu">
         <p><i class="fas fa-envelope"></i></p>
-        <a href="#">@nickname</a>
+        <a asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
     </nav>
 </header>
 

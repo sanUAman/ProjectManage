@@ -1,0 +1,166 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredoka One', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background: linear-gradient(to bottom, #342619, #231a11);
+    height: 125vh;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    padding: 20px 15%;
+    z-index: 100;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+    header.scrolled {
+        background-color: #231a11;
+        backdrop-filter: blur(15px);
+        border: 1px solid #5b442e;
+        border-radius: 3px;
+    }
+
+    header .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #64ffda;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    header nav {
+        display: flex;
+    }
+
+        header nav p {
+            padding: 0 20px;
+            margin-top: 14px;
+            color: #f1e5da;
+            font-size: 1.2rem;
+        }
+
+        header nav a {
+            padding: 10px 20px;
+            border: 3px solid #5b442e;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #f1e5da;
+            background-color: #453221;
+            font-size: 1.2rem;
+            transition: background-color 0.2s ease;
+        }
+
+            header nav a:hover {
+                background-color: #231a11;
+            }
+
+.header-with-line {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 70%;
+    margin: 105px auto 0 auto;
+}
+
+    .header-with-line .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: #996633;
+    }
+
+.customization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 30vh;
+}
+
+    .customization .nickname {
+        font-size: 4rem;
+        color: #f1e5da;
+    }
+
+    .customization .edit {
+        padding: 4px 8px;
+        border: 2px solid #5b442e;
+        border-radius: 20px;
+        color: #64ffda;
+        background-color: #453221;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+
+.main-with-line {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 70%;
+    margin: 0 auto 0 auto;
+}
+
+    .main-with-line .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: #996633;
+    }
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    margin-top: 30px;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name-of-container {
+    font-size: 25px;
+    color: #f1e5da;
+    margin-bottom: 10px;
+}
+
+.messages {
+    width: 1000px;
+    height: 450px;
+    overflow-y: auto;
+    border: 2px solid #5b442e;
+    border-radius: 10px;
+    background-color: #453221;
+    padding: 10px;
+}
+
+.message-card {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #996633;
+    border-radius: 10px;
+    background-color: #cc9933;
+    color: #342619;
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+    .message-card:hover {
+        background-color: #a9802d;
+        cursor: pointer;
+    }
