@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "ProjeX";
+    var nickname = ViewBag.Nickname;
+    var password = ViewBag.Password;
 }
 
 <link rel="stylesheet" href="~/css/Configuration.css" asp-append-version="true" />
@@ -16,6 +18,9 @@
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
         <input type="hidden" asp-for="ProjectName" />
+
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
 
         <label asp-for="ParticipantName">Nickname:</label>
         <input asp-for="ParticipantName" type="text" id="nickname" name="nickname" readonly /><br />
@@ -41,6 +46,9 @@
     </form>
 
     <form method="post" asp-controller="Participant" asp-action="DeleteParticipant">
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
+
         <input type="hidden" name="participantId" value="@Model.Id" />
         <button type="submit" class="delete-button">Delete</button>
     </form>

@@ -2,6 +2,7 @@
 using ProjectManage.Models;
 using ProjectManage.Data;
 using System.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjectManage.Controllers
 {
@@ -190,7 +191,7 @@ namespace ProjectManage.Controllers
             return RedirectToAction("Project", "Participant", nameofproject);
         }
 
-        public IActionResult Project(int id, string name)
+        public IActionResult Project(int id, string name, string nickname, string password)
         {
             var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
 
@@ -210,35 +211,27 @@ namespace ProjectManage.Controllers
 
             ViewBag.Participants = participants;
 
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
 
             return View(new NameOfProject { Id = id, Name = name });
         }
 
         [HttpGet]
-        public IActionResult Configuration(int participantId, int projectId)
+        public IActionResult Configuration(int participantId, int projectId, string nickname, string password)
         {
             var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantId && pu.ProjectId == projectId);
+
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
 
             return View(participant);
         }
 
         [HttpPost]
-        public IActionResult AddingRedirect(NameOfProject nameofproject)
-        {
-            return RedirectToAction("Adding", "Participant", nameofproject);
-        }
-
-        public IActionResult Adding(int id, string name)
-        {
-            var projectParticipant = new ProjectParticipant { ProjectId = id, ProjectName = name };
-            return View(projectParticipant);
-        }
-
-        ///
-
-        [HttpPost]
-        public IActionResult SaveParticipant(ProjectParticipant updatedParticipant)
+        public IActionResult SaveParticipant(ProjectParticipant updatedParticipant, string nickname, string password)
         {
             var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
 
@@ -251,29 +244,34 @@ namespace ProjectManage.Controllers
             existingParticipant.Tasks = updatedParticipant.Tasks;
             existingParticipant.Status = updatedParticipant.Status;
 
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName });
+            return RedirectToAction("Project", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password});
         }
 
         [HttpPost]
-        public IActionResult DeleteParticipant(int participantId)
+        public IActionResult AddingRedirect(NameOfProject nameofproject, string nickname, string password)
         {
-            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == participantId);
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
 
-            if (participant == null)
-            {
-                return NotFound("Participant not found");
-            }
+            return RedirectToAction("Adding", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password});
+        }
 
-            _context.ProjectParticipants.Remove(participant);
-            _context.SaveChanges();
+        public IActionResult Adding(int id, string name, string nickname, string password)
+        {
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
 
-            return RedirectToAction("Project", "Participant", new { id = participant.ProjectId, name = participant.ProjectName });
+            var projectParticipant = new ProjectParticipant { ProjectId = id, ProjectName = name };
+            return View(projectParticipant);
         }
 
         [HttpPost]
-        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string role, string tasks, bool status)
+        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string nicknameManager, string passwordManager, string role, string tasks, bool status)
         {
             var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname && u.password == password);
 
@@ -282,11 +280,11 @@ namespace ProjectManage.Controllers
                 return NotFound("Participant data not valid! (nickname or password)");
             }
 
-            bool alreadyInProject = _context.ProjectParticipants.Any(pu => pu.ParticipantId == participant.Id && pu.ProjectId == projectId && pu.ProjectName == projectName);
+            bool alreadyInProject = _context.ProjectParticipants.Any(pu => pu.ParticipantId == participant.Id && pu.ParticipantName == participant.nickname && pu.ProjectId == projectId && pu.ProjectName == projectName);
 
             if (alreadyInProject)
             {
-                return NotFound("This one already in project!");
+                return NotFound("This one already in project or one just doesn`t exist!");
             }
 
             var projectParticipant = new ProjectParticipant
@@ -301,10 +299,32 @@ namespace ProjectManage.Controllers
                 Status = status
             };
 
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
             _context.ProjectParticipants.Add(projectParticipant);
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = projectId, name = projectName });
+            return RedirectToAction("Project", "Participant", new { id = projectId, name = projectName, nickname = nicknameManager, password = passwordManager});
+        }
+
+        [HttpPost]
+        public IActionResult DeleteParticipant(int participantId, string nickname, string password)
+        {
+            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == participantId);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found");
+            }
+
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
+            _context.ProjectParticipants.Remove(participant);
+            _context.SaveChanges();
+
+            return RedirectToAction("Project", "Participant", new { id = participant.ProjectId, name = participant.ProjectName, nickname = nickname, password = password });
         }
 
     }

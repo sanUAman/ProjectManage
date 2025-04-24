@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "ProjeX";
+    var nickname = ViewBag.Nickname;
+    var password = ViewBag.Password;
 }
+
 <link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
@@ -17,6 +20,9 @@
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
 
+    <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+    <input type="hidden" name="password" value="@ViewBag.password" />
+
     <div class="project-body">
         <div class="info-container">
             <div class="participants-container">
@@ -26,7 +32,7 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
                                 @participant.nickname
                             </a>
                         }

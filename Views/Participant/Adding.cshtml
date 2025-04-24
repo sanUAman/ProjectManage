@@ -14,6 +14,8 @@
     <form method="post" asp-controller="Participant" asp-action="AddingParticipants">
         <input type="hidden" name="projectId" value="@Model.ProjectId" />
         <input type="hidden" name="projectName" value="@Model.ProjectName" />
+        <input type="hidden" name="nicknameManager" value="@ViewBag.nickname" />
+        <input type="hidden" name="passwordManager" value="@ViewBag.password" />
 
         <label for="nickname">Nickname:</label>
         <input for="nickname" type="text" id="nickname" name="nickname" required /><br />
