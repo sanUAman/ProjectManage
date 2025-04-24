@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "ProjeX";
 }
+
 <link rel="stylesheet" href="~/css/Configuration.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
@@ -11,7 +12,7 @@
 </div>
 
 <div class="project-container">
-    <form method="post" asp-controller="Manager" asp-action="SaveParticipant">
+    <form method="post" asp-controller="Participant" asp-action="SaveParticipant">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
         <input type="hidden" asp-for="ProjectName" />
@@ -39,7 +40,7 @@
         </div>
     </form>
 
-    <form method="post" asp-controller="Manager" asp-action="DeleteParticipant">
+    <form method="post" asp-controller="Participant" asp-action="DeleteParticipant">
         <input type="hidden" name="participantId" value="@Model.Id" />
         <button type="submit" class="delete-button">Delete</button>
     </form>

@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-
 <header>
     <div class="logo" onclick="location.reload()">ProjeX</div>
     <nav class="menu">
@@ -30,7 +29,7 @@
 
         <div class="projects-container">
             <div class="name-of-container">
-                <p>You participate in:</p>
+                <p>You are not CEO in:</p>
             </div>
             <div class="projects">
                 @if (ViewBag.Projects != null)
@@ -52,19 +51,20 @@
 
         <div class="manager-container">
             <div class="name-of-container">
-                <p>You are manager in:</p>
+                <p>You are CEO in:</p>
             </div>
             <div class="manager-projects">
                 @if (ViewBag.ManagingProjects != null)
                 {
                     foreach (var managingProject in ViewBag.ManagingProjects)
                     {
-                        <a class="manager-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@managingProject.ProjectName" asp-route-id="@managingProject.ProjectId" asp-route-nickname="@nickname">
+                        <a class="manager-card" asp-controller="Participant" asp-action="Project" asp-route-Name="@managingProject.ProjectName" asp-route-id="@managingProject.ProjectId" asp-route-nickname="@nickname">
                             @managingProject.ProjectName
                         </a>
                     }
                 }
             </div>
+            <a class="project-button" asp-controller="Participant" asp-action="CreatingProjects" asp-route-nickname="@nickname" asp-route-password="@password">Create Project</a>
         </div>
     </form>
 
@@ -74,7 +74,7 @@
 
         <div class="tasks-container">
             <div class="name-of-container">
-                <p>Tasks</p>
+                <p>Tasks:</p>
             </div>
             <div class="tasks">
                 @if (ViewBag.Tasks != null)
@@ -92,6 +92,7 @@
 </div>
 
 @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
     <script>
         document.addEventListener('scroll', function () {
             const header = document.querySelector('header');

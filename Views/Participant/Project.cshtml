@@ -4,7 +4,6 @@
     ViewData["Title"] = "ProjeX";
 }
 <link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
-<!--  <script src="~/js/Project.js"></script> -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 
@@ -13,7 +12,7 @@
     <h2 class="idofproject">Id of project - "@Model.Id"</h2>
 </div>
 
-<form method="post" asp-controller="Manager" asp-action="AddingRedirect">
+<form method="post" asp-controller="Participant" asp-action="AddingRedirect">
 
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
@@ -27,7 +26,7 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Manager" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id">
                                 @participant.nickname
                             </a>
                         }

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ProjectManage.Views.Manager
+namespace ProjectManage.Views.Participant
 {
-    public class EnterProjectModel : PageModel
+    public class ProjectModel : PageModel
     {
         public void OnGet()
         {

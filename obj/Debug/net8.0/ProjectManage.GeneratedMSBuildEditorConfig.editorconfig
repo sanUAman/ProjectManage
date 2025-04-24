@@ -22,24 +22,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Manager/Adding.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxBZGRpbmcuY3NodG1s
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Adding.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcQWRkaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Manager/Configuration.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxDb25maWd1cmF0aW9uLmNzaHRtbA==
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Configuration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcQ29uZmlndXJhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Manager/EnterProject.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxFbnRlclByb2plY3QuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Manager/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Manager/Project.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxQcm9qZWN0LmNzaHRtbA==
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/CreatingProjects.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcQ3JlYXRpbmdQcm9qZWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/ExistingProjects.cshtml]
@@ -56,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/Project.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcUHJvamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/dziva/source/repos/ProjectManage/ProjectManage/Views/Participant/SignIn.cshtml]

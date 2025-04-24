@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\Configuration.css"
     },
     {
+      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\CreatingProjects.css",
+      "PackagePath": "staticwebassets\\css\\CreatingProjects.css"
+    },
+    {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\EnterProject.css",
       "PackagePath": "staticwebassets\\css\\EnterProject.css"
     },
@@ -27,10 +31,6 @@
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Info.css",
       "PackagePath": "staticwebassets\\css\\Info.css"
-    },
-    {
-      "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
-      "PackagePath": "staticwebassets\\css\\Manager.css"
     },
     {
       "Id": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\ParticipantProject.css",

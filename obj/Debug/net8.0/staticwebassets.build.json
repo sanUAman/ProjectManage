@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5vXnAhOKtI1KUlh98Ro9QVZeAGKHxFd+jUIIjUMaQGU=",
+  "Hash": "MRhfg+cDzwvpEKGOHY1w5eUJdzrqvIGksz7KCDPmpzk=",
   "Source": "ProjectManage",
   "BasePath": "_content/ProjectManage",
   "Mode": "Default",
@@ -93,6 +93,25 @@
       "OriginalItemSpec": "wwwroot\\css\\Configuration.css"
     },
     {
+      "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\CreatingProjects.css",
+      "SourceId": "ProjectManage",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\",
+      "BasePath": "_content/ProjectManage",
+      "RelativePath": "css/CreatingProjects.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\CreatingProjects.css"
+    },
+    {
       "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\EnterProject.css",
       "SourceId": "ProjectManage",
       "SourceType": "Discovered",
@@ -167,25 +186,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Info.css"
-    },
-    {
-      "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\Manager.css",
-      "SourceId": "ProjectManage",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\",
-      "BasePath": "_content/ProjectManage",
-      "RelativePath": "css/Manager.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\Manager.css"
     },
     {
       "Identity": "C:\\Users\\dziva\\source\\repos\\ProjectManage\\ProjectManage\\wwwroot\\css\\ParticipantProject.css",
