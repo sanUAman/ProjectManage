@@ -17,8 +17,8 @@ header {
     top: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     backdrop-filter: blur(10px);
     padding: 20px 15%;
     z-index: 100;
@@ -39,32 +39,6 @@ header {
         cursor: pointer;
         text-decoration: none;
     }
-
-    header nav {
-        display: flex;
-    }
-
-        header nav p {
-            padding: 0 20px;
-            margin-top: 14px;
-            color: #f1e5da;
-            font-size: 1.2rem;
-        }
-
-        header nav a {
-            padding: 10px 20px;
-            border: 3px solid #5b442e;
-            border-radius: 50px;
-            text-decoration: none;
-            color: #f1e5da;
-            background-color: #453221;
-            font-size: 1.2rem;
-            transition: background-color 0.2s ease;
-        }
-
-            header nav a:hover {
-                background-color: #231a11;
-            }
 
 .header-with-line {
     display: flex;
@@ -154,23 +128,3 @@ input {
 .back-button {
     text-decoration: none;
 }
-
-.link-container {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.link-button {
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fcd190;
-    font-family: 'Fredoka One', sans-serif;
-    transition: color 0.1s ease;
-}
-
-    .link-button:hover {
-        color: #c2a16e;
-        text-decoration: underline;
-    }

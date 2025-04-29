@@ -13,10 +13,6 @@
 
 <header>
     <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
-    <nav class="menu">
-        <p><i class="fas fa-envelope"></i></p>
-        <a asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
-    </nav>
 </header>
 
 <div class="header-with-line">
@@ -31,6 +27,9 @@
     <div class="project-container">
         <form method="post" asp-controller="Participant" asp-action="Create">
 
+            <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+            <input type="hidden" name="password" value="@ViewBag.password" />
+
             <label asp-for="Name">Name of Project:</label>
             <input asp-for="Name" type="text" id="Name" name="Name" required><br>
             <span asp-validation-for="Name" class="text-danger"></span>
@@ -41,10 +40,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div class="link-container">
-    <a class="link-button" asp-controller="Manager" asp-action="EnterProject">Already have a project?</a>
 </div>
 
 @section Scripts {

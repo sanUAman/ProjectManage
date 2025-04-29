@@ -70,7 +70,7 @@ namespace ProjectManage.Controllers
 
             var projects = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id && pu.Role != "CEO" && pu.Role != "Manager").Select(pu => new { pu.ProjectId, pu.ProjectName }).Distinct().ToList();
             var managingProjects = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id && pu.Role == "CEO" || pu.Role == "Manager").Select(pu => new { pu.ProjectId, pu.ProjectName}).Distinct().ToList();
-            var tasks = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Tasks }).Distinct().ToList();
+            var tasks = _context.ProjectParticipants.Where(pu => pu.ParticipantId == participant.Id && pu.Status == false).Select(pu => new { pu.ProjectId, pu.ProjectName, pu.Tasks }).Distinct().ToList();
 
             ViewBag.Tasks = tasks;
             ViewBag.ManagingProjects = managingProjects;
@@ -174,13 +174,8 @@ namespace ProjectManage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(NameOfProject nameofproject)
+        public IActionResult Create(NameOfProject nameofproject, string nickname, string password)
         {
-            if (string.IsNullOrEmpty(nameofproject.Name))
-            {
-                return Redirect("/Manager");
-            }
-
             var maxProjectId = _context.NamesOfProjects.Select(p => p.Id).ToList().Max();
 
             var res = _context.NamesOfProjects.Add(nameofproject);
@@ -188,7 +183,10 @@ namespace ProjectManage.Controllers
 
             nameofproject.Id = maxProjectId + 1;
 
-            return RedirectToAction("Project", "Participant", nameofproject);
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
+            return RedirectToAction("Project", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
         }
 
         public IActionResult Project(int id, string name, string nickname, string password)
@@ -198,6 +196,22 @@ namespace ProjectManage.Controllers
             if (project == null)
             {
                 return NotFound("This project doesn't exist");
+            }
+
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            if (participant == null)
+            {
+                return NotFound("Participant not found");
+            }
+
+            // Отримуємо запис про участь у проєкті
+            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participant.Id);
+
+            string role = "";
+
+            if (projectParticipant != null && (projectParticipant.Role == "CEO" || projectParticipant.Role == "Manager"))
+            {
+                role = "CEO";
             }
 
             var participantIds = _context.ProjectParticipants.Where(pu => pu.ProjectId == id).Select(pu => pu.ParticipantId).ToList();
@@ -210,11 +224,11 @@ namespace ProjectManage.Controllers
             int completedTasks = projectParticipants.Count(pu => pu.Status);
 
             ViewBag.Participants = participants;
-
             ViewBag.Nickname = nickname;
             ViewBag.Password = password;
-
+            ViewBag.ShowCEONotification = true;
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
+            ViewBag.UserRole = role;
 
             return View(new NameOfProject { Id = id, Name = name });
         }
@@ -316,6 +330,14 @@ namespace ProjectManage.Controllers
             if (participant == null)
             {
                 return NotFound("Participant not found");
+            }
+
+            if (participant.ParticipantName == nickname && participant.ParticipantPassword == password)
+            {
+                _context.ProjectParticipants.Remove(participant);
+                _context.SaveChanges();
+
+                return RedirectToAction("ExistingProjects", new { nickname = nickname, password = password });
             }
 
             ViewBag.Nickname = nickname;

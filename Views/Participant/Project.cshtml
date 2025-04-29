@@ -9,10 +9,17 @@
 <link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
+<header>
+    <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+</header>
+
+<div class="header-with-line">
+    <div class="line"></div>
+</div>
 
 <div class="project-header">
-    <h1 class="nameofproject">Name of project - "@Model.Name"</h1>
-    <h2 class="idofproject">Id of project - "@Model.Id"</h2>
+    <h1 class="nameofproject">--- @Model.Name ---</h1>
+    <h2 class="enterinproject">You entered like - @ViewBag.UserRole</h2>
 </div>
 
 <form method="post" asp-controller="Participant" asp-action="AddingRedirect">
@@ -59,8 +66,16 @@
     </div>
 </form>
 
-<div class="main-page-container">
-    <div class="main-page">
-        <a href="/">🏠︎</a>
-    </div>
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+}
