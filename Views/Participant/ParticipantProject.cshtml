@@ -2,20 +2,33 @@
 
 @{
     ViewData["Title"] = "ProjeX";
+    var nickname = ViewBag.Nickname;
+    var password = ViewBag.Password;
 }
+
 <link rel="stylesheet" href="~/css/ParticipantProject.css" asp-append-version="true" />
-<!--  <script src="~/js/Project.js"></script> -->
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
+<header>
+    <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+</header>
+
+<div class="header-with-line">
+    <div class="line"></div>
+</div>
 
 <div class="project-header">
-    <h1 class="nameofproject">@Model.Name</h1>
+    <h1 class="nameofproject">--- @Model.Name ---</h1>
+    <h2 class="enterinproject">You entered like - @ViewBag.UserRole</h2>
 </div>
 
 <form method="post" asp-controller="Participant" asp-action="Info">
 
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
+
+    <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+    <input type="hidden" name="password" value="@ViewBag.password" />
 
     <div class="project-body">
         <div class="info-container">
@@ -26,7 +39,7 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-currentNickname="@ViewBag.Nickname">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
                                 @participant.nickname
                             </a>
                         }
@@ -52,8 +65,16 @@
     </div>
 </form>
 
-<div class="main-page-container">
-    <div class="main-page">
-        <a href="/">🏠︎</a>
-    </div>
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+}

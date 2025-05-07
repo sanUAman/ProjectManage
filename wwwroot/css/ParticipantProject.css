@@ -1,30 +1,80 @@
-﻿:root {
-    --bg-color: #342619;
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Fredoka One', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background: linear-gradient(to bottom, #342619, #231a11);
+    height: 110vh;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding: 20px 15%;
+    z-index: 100;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+    header.scrolled {
+        background-color: #231a11;
+        backdrop-filter: blur(15px);
+        border: 1px solid #5b442e;
+        border-radius: 3px;
+    }
+
+    header .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #64ffda;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.header-with-line {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 70%;
+    margin: 105px auto 0 auto;
+}
+
+    .header-with-line .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: #996633;
+    }
+
+.nameofproject {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 75px;
+    color: #f1e5da;
+}
+
+.enterinproject {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+    color: #f1e5da;
+}
+
+.project-body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     height: 100%;
     margin: 0;
-    background-color: var(--bg-color);
-}
-
-.nameofproject {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 50px;
-    color: #f1e5da;
-}
-
-.idofproject {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 30px;
-    color: #f1e5da;
 }
 
 .info-container {
@@ -97,7 +147,7 @@ body {
     border-radius: 50%;
     background-color: #453221;
     border: 3px solid #5b442e;
-    overflow: hidden; /* Хвиля обрізається за межами кола */
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,21 +157,21 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    transform: translateY(var(--progress)); /* Підйом хвилі залежно від прогресу */
-    transition: transform 0.5s ease; /* Плавна анімація підйому хвилі */
+    transform: translateY(var(--progress));
+    transition: transform 0.5s ease;
 }
 
 .wave {
     position: absolute;
     bottom: auto;
     z-index: 2;
-    width: 400%; /* Подвоєна ширина для безшовної анімації */
-    height: 25%; /* Висота хвилі */
-    animation: wave-move 4s linear infinite; /* Плавна безкінечна анімація */
+    width: 400%;
+    height: 25%;
+    animation: wave-move 4s linear infinite;
 }
 
 .wave-path {
-    fill: #996633; /* Колір хвилі */
+    fill: #996633;
 }
 
 @keyframes wave-move {
@@ -161,30 +211,3 @@ body {
     justify-content: center;
     margin-top: 50px;
 }
-
-.main-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border: 5px solid #996633;
-    border-radius: 50%;
-    background-color: #cc9933;
-    color: #342619;
-    font-family: 'Fredoka One', sans-serif;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
-
-    .main-page:hover {
-        background-color: #a9802d;
-        cursor: pointer;
-    }
-
-    .main-page a {
-        text-decoration: none;
-        color: #fff0da;
-        font-size: 20px;
-    }

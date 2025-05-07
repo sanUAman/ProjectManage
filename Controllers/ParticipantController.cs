@@ -96,18 +96,33 @@ namespace ProjectManage.Controllers
             return View();
         }
 
-        public IActionResult ParticipantProject(string name, int id, string nickname)
+        public IActionResult ParticipantProject(int id, string name, string nickname, string password)
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                return NotFound("Project not specified!");
-            }
-
             var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
 
             if (project == null)
             {
                 return NotFound("Project not found!");
+            }
+
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found!");
+            }
+
+            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participant.Id);
+
+            string role = "";
+
+            if (projectParticipant != null && (projectParticipant.Role == "CEO" || projectParticipant.Role == "Manager"))
+            {
+                role = "CEO";
+            }
+            else
+            {
+                role = "Participant";
             }
 
             var participantIds = _context.ProjectParticipants.Where(pu => pu.ProjectId == id).Select(pu => pu.ParticipantId).ToList();
@@ -119,31 +134,39 @@ namespace ProjectManage.Controllers
             int totalParticipants = projectParticipants.Count;
             int completedTasks = projectParticipants.Count(pu => pu.Status);
 
-            ViewBag.Nickname = nickname;
-
             ViewBag.Participants = participants;
-
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
+            ViewBag.UserRole = role;
 
-            return View(project);
+            return View(new NameOfProject { Id = id, Name = name });
         }
 
-        public IActionResult Info(int participantId, int projectId, string currentNickname)
+        public IActionResult Info(int projectId, int participantId, string nickname, string password)
         {
             var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantId && pu.ProjectId == projectId);
 
-            ViewBag.CurrentNickname = currentNickname;
+            if (participant == null)
+            {
+                return NotFound("This participant doesn`t exist in this project :(");
+            }
+
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
+
+            ViewBag.CanEditStatus = string.Equals(participant.ParticipantName, nickname, StringComparison.OrdinalIgnoreCase);
 
             return View(participant);
         }
 
-        public IActionResult Save(ProjectParticipant updatedParticipant, string nickname)
+        public IActionResult Save(ProjectParticipant updatedParticipant, string nickname, string password)
         {
-            string currentUserNickname = nickname;
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
 
-            if (string.IsNullOrEmpty(currentUserNickname))
+            if (participant == null)
             {
-                return Unauthorized("You are not logged in!");
+                return NotFound("We got some troubles with link :(");
             }
 
             var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
@@ -155,11 +178,12 @@ namespace ProjectManage.Controllers
 
             existingParticipant.Status = updatedParticipant.Status;
 
-            ViewBag.CurrentNickname = currentUserNickname;
+            ViewBag.Nickname = nickname;
+            ViewBag.Password = password;
 
             _context.SaveChanges();
 
-            return RedirectToAction("ParticipantProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = currentUserNickname });
+            return RedirectToAction("ParticipantProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password });
         }
 
         /// Manager Controller
@@ -199,12 +223,12 @@ namespace ProjectManage.Controllers
             }
 
             var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+
             if (participant == null)
             {
                 return NotFound("Participant not found");
             }
 
-            // Отримуємо запис про участь у проєкті
             var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participant.Id);
 
             string role = "";
@@ -226,7 +250,6 @@ namespace ProjectManage.Controllers
             ViewBag.Participants = participants;
             ViewBag.Nickname = nickname;
             ViewBag.Password = password;
-            ViewBag.ShowCEONotification = true;
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
             ViewBag.UserRole = role;
 

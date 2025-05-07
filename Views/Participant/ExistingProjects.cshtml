@@ -36,7 +36,7 @@
                 {
                     foreach (var project in ViewBag.Projects)
                     {
-                        <a class="project-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@project.ProjectName" asp-route-id="@project.ProjectId" asp-route-nickname="@nickname">
+                        <a class="project-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@project.ProjectName" asp-route-id="@project.ProjectId" asp-route-nickname="@nickname" asp-route-password="@password">
                             @project.ProjectName
                         </a>
                     }
