@@ -57,3 +57,22 @@ input {
     .save-button:hover {
         background-color: #a9802d;
     }
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 4px solid #996633;
+    background-color: #cc9933;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 30px;
+    color: #f1dcbe;
+    text-decoration: none;
+    font-family: 'Fredoka One', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+    .back-button:hover {
+        background-color: #a9802d;
+    }

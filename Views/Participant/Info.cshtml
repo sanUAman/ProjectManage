@@ -4,6 +4,8 @@
     ViewData["Title"] = "ProjeX";
     var nickname = ViewBag.Nickname;
     var password = ViewBag.Password;
+    var projectname = ViewBag.ProjectName;
+    var projectId = ViewBag.ProjectId;
 }
 <link rel="stylesheet" href="~/css/Info.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
@@ -17,6 +19,8 @@
 
         <input type="hidden" name="nickname" value="@ViewBag.nickname" />
         <input type="hidden" name="password" value="@ViewBag.password" />
+        <input type="hidden" name="projectname" value="@ViewBag.ProjectName" />
+        <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
 
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
@@ -38,14 +42,16 @@
 
         {
             <input asp-for="Status" type="checkbox" id="Status" /><br />
+            <div class="button-container">
+                <button type="submit" class="save-button">Save</button>
+            </div>
         }
         else
         {
             <input asp-for="Status" type="checkbox" disabled /><br />
+            <div class="button-container">
+                <a class="back-button" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@projectname" asp-route-id="@projectId" asp-route-nickname="@nickname" asp-route-password="@password">Back</a>
+            </div>
         }
-
-        <div class="button-container">
-            <button type="submit" class="save-button">Save</button>
-        </div>
     </form>
 </div>

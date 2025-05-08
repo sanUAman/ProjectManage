@@ -154,6 +154,8 @@ namespace ProjectManage.Controllers
 
             ViewBag.Nickname = nickname;
             ViewBag.Password = password;
+            ViewBag.ProjectName = participant.ProjectName;
+            ViewBag.ProjectId = participant.ProjectId;
 
             ViewBag.CanEditStatus = string.Equals(participant.ParticipantName, nickname, StringComparison.OrdinalIgnoreCase);
 
