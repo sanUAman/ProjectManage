@@ -8,6 +8,9 @@
 
 <link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <header>
     <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
@@ -66,6 +69,38 @@
     </div>
 </form>
 
+<footer>
+    <div class="footer-with-line">
+        <div class="line"></div>
+    </div>
+    <div class="back-to-top">
+        <a href="#top" class="back-to-top-btn">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
+    <div class="social-icons">
+        <div class="li_icon">
+            <a href="https://www.facebook.com/profile.php?id=100046030630926" target="_blank" class="social-icon">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+        </div>
+        <div class="li_icon">
+            <a href="https://www.instagram.com/m0nk3go/" target="_blank" class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        <div class="li_icon">
+            <a href="https://x.com/m0nk3go" target="_blank" class="social-icon">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <div class="footer-text">
+        <p>© 2025 Oleksandr Dzhyvalov. All rights reserved</p>
+        <p>Built with ASP.NET<br>HTML & CSS & Javascript</p>
+    </div>
+</footer>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
@@ -76,6 +111,18 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        document.querySelector('.back-to-top-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        });
+
+        AOS.init({
+            once: true
         });
     </script>
 }
