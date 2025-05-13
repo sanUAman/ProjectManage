@@ -1,0 +1,57 @@
+﻿@model ProjectManage.Models.NameOfProject
+
+@{
+    ViewData["Title"] = "ProjeX";
+
+    var nickname = ViewBag.Nickname;
+    var password = ViewBag.Password;
+}
+
+<link rel="stylesheet" href="~/css/CreatingProjects.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<header>
+    <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+</header>
+
+<div class="header-with-line">
+    <div class="line"></div>
+</div>
+
+<div>
+    <h1 class="title">Create a project</h1>
+</div>
+
+<div class="center-block">
+    <div class="project-container">
+        <form method="post" asp-controller="Participant" asp-action="Create">
+
+            <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+            <input type="hidden" name="password" value="@ViewBag.password" />
+
+            <label asp-for="Name">Name of Project:</label>
+            <input asp-for="Name" type="text" id="Name" name="Name" required><br>
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <div class="button-container">
+                <button type="submit" class="create-button">Create</button>
+                <a href="/" class="back-button">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+}

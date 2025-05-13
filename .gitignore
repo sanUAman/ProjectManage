@@ -1,0 +1,16 @@
+bin/
+obj/
+
+*.dll
+*.exe
+*.pdb
+*.cache
+*.props
+*.editorconfig
+*.json
+
+**/staticwebassets.*
+
+*.FileListAbsolute.txt
+*.CoreCompileInputs.cache
+*.AssemblyInfo.cs

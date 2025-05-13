@@ -1,4 +1,4 @@
-﻿@model ProjectManage.Models.NameOfProject
+﻿@model ProjectManage.Models.ProjectParticipant
 
 @{
     ViewData["Title"] = "ProjeX";
@@ -6,7 +6,7 @@
     var password = ViewBag.Password;
 }
 
-<link rel="stylesheet" href="~/css/ParticipantProject.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -14,59 +14,49 @@
 
 <header>
     <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <nav class="menu">
+        <a class="profile" asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
+        <a class="exit" href="/SignIn">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </nav>
 </header>
 
 <div class="header-with-line">
     <div class="line"></div>
 </div>
 
-<div class="project-header">
-    <h1 class="nameofproject">--- @Model.Name ---</h1>
-    <h2 class="enterinproject">You entered like - @ViewBag.UserRole</h2>
+<div class="customization">
+    <p class="updates">More updates coming soon...</p>
 </div>
 
-<form method="post" asp-controller="Participant" asp-action="Info">
+<div class="main-with-line">
+    <div class="line"></div>
+</div>
 
-    <input type="hidden" asp-for="@Model.Id" />
-    <input type="hidden" asp-for="@Model.Name" />
+<div class="container-wrapper">
+    <form method="post" asp-controller="Participant" asp-action="Messages">
+        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+        <input type="hidden" name="password" value="@ViewBag.password" />
 
-    <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-    <input type="hidden" name="password" value="@ViewBag.password" />
-
-    <div class="project-body">
-        <div class="info-container">
-            <div class="participants-container">
-                <div class="participants-label">Participants:</div>
-                <div class="participants" id="participantsContainer">
-                    @if (ViewBag.Participants != null)
-                    {
-                        foreach (var participant in ViewBag.Participants)
-                        {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
-                                @participant.nickname
-                            </a>
-                        }
-                    }
-                </div>
+        <div class="messages-container">
+            <div class="name-of-container">
+                <p>Your messages:</p>
             </div>
-
-            <div class="progress-container">
-                <div class="progress-label">Progress:</div>
-                <div class="progress" id="diagramContainer">
-                    <div class="wave-container" style="--progress: @(80 - ViewBag.CompletionPercentage)%;">
-                        <svg class="wave" viewBox="0 -5 1000 100" preserveAspectRatio="none">
-                            <path class="wave-path" d="M0,50 Q25,0 50,50 T100,50 T150,50 T200,50 T250,50 T300,50 T350,50 T400,50 T450,50 T500,50 T550,50 T600,50 T650,50 T700,50 T750,50 T800,50 T850,50 T900,50 T950,50 T1000,50 L1000,100 L0,100 Z"></path>
-                        </svg>
-                    </div>
-                    <div class="fill-rect" style="--progress: @(100 - ViewBag.CompletionPercentage)%;"></div>
-                    <div class="progress-percentage">
-                        @ViewBag.CompletionPercentage%
-                    </div>
-                </div>
+            <div class="messages">
+                @if (ViewBag.Messages != null)
+                {
+                    foreach (var message in ViewBag.Messages)
+                    {
+                        <a class="message-card" asp-controller="Participant" asp-action="Messages" asp-route-nickname="@nickname">
+                            @message
+                        </a>
+                    }
+                }
             </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 <footer>
     <div class="footer-with-line">

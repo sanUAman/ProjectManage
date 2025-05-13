@@ -6,7 +6,7 @@
     var password = ViewBag.Password;
 }
 
-<link rel="stylesheet" href="~/css/ParticipantProject.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Project.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -25,7 +25,7 @@
     <h2 class="enterinproject">You entered like - @ViewBag.UserRole</h2>
 </div>
 
-<form method="post" asp-controller="Participant" asp-action="Info">
+<form method="post" asp-controller="Participant" asp-action="AddingRedirect">
 
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
@@ -42,12 +42,13 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
                                 @participant.nickname
                             </a>
                         }
                     }
                 </div>
+                <button type="submit" class="add-button">Add Participant</button>
             </div>
 
             <div class="progress-container">
