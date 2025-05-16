@@ -201,12 +201,8 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public IActionResult Create(NameOfProject nameofproject, string nickname, string password)
         {
-            var maxProjectId = _context.NamesOfProjects.Select(p => p.Id).ToList().Max();
-
-            var res = _context.NamesOfProjects.Add(nameofproject);
+            _context.NamesOfProjects.Add(nameofproject);
             _context.SaveChanges();
-
-            nameofproject.Id = maxProjectId + 1;
 
             ViewBag.Nickname = nickname;
             ViewBag.Password = password;
