@@ -2,6 +2,8 @@
 using ProjectManage.Models;
 using ProjectManage.Data;
 using System.Data;
+using Mysqlx.Crud;
+using System.Threading.Tasks;
 
 namespace ProjectManage.Controllers
 {
@@ -201,11 +203,33 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public IActionResult Create(NameOfProject nameofproject, string nickname, string password)
         {
+            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname && u.password == password);
+
+            if (participant == null)
+            {
+                return NotFound("Participant data not valid! (nickname or password)");
+            }
+
             _context.NamesOfProjects.Add(nameofproject);
             _context.SaveChanges();
 
+            var newProjectParticipant = new ProjectParticipant
+            {
+                ProjectId = nameofproject.Id,
+                ProjectName = nameofproject.Name,
+                ParticipantId = participant.Id,
+                ParticipantName = participant.nickname,
+                ParticipantPassword = participant.password,
+                Role = "CEO",
+                Tasks = "",
+                Status = false,
+            };
+
             ViewBag.Nickname = nickname;
             ViewBag.Password = password;
+
+            _context.ProjectParticipants.Add(newProjectParticipant);
+            _context.SaveChanges();
 
             return RedirectToAction("Project", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
         }

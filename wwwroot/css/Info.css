@@ -1,15 +1,11 @@
-﻿﻿:root {
-    --bg-color: #342619;
-}
-
-body {
+﻿body {
     font-family: 'Fredoka One', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: var(--bg-color);
+    background: linear-gradient(to bottom, #342619, #231a11);
 }
 
 .info-header {
