@@ -36,7 +36,7 @@
                 <p>You are not CEO in:</p>
             </div>
             <div class="projects">
-                @if (ViewBag.Projects != null)
+                @if (ViewBag.Projects != null && ViewBag.Projects.Count > 0)
                 {
                     foreach (var project in ViewBag.Projects)
                     {
@@ -44,6 +44,12 @@
                             @project.ProjectName
                         </a>
                     }
+                }
+                else
+                {
+                    <div class="empty-container">
+                        <p class="empty-text">Empty</p>
+                    </div>
                 }
             </div>
         </div>
@@ -67,6 +73,12 @@
                         </a>
                     }
                 }
+                else
+                {
+                    <div class="empty-container">
+                        <p class="empty-text">Empty</p>
+                    </div>
+                }
             </div>
             <a class="project-button" asp-controller="Participant" asp-action="CreatingProjects" asp-route-nickname="@nickname" asp-route-password="@password">Create Project</a>
         </div>
@@ -89,6 +101,12 @@
                             @task.Tasks
                         </a>
                     }
+                }
+                else
+                {
+                    <div class="empty-container">
+                        <p class="empty-text">Empty</p>
+                    </div>
                 }
             </div>
         </div>

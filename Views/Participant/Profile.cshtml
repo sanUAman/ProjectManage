@@ -30,10 +30,6 @@
     <p class="updates">More updates coming soon...</p>
 </div>
 
-<div class="main-with-line">
-    <div class="line"></div>
-</div>
-
 <div class="container-wrapper">
     <form method="post" asp-controller="Participant" asp-action="Messages">
         <input type="hidden" name="nickname" value="@ViewBag.nickname" />
@@ -52,6 +48,12 @@
                             @message
                         </a>
                     }
+                }
+                else
+                {
+                    <div class="empty-container">
+                        <p class="empty">You haven`t received any messages yet</p>
+                    </div>
                 }
             </div>
         </div>

@@ -155,6 +155,18 @@ header {
         cursor: pointer;
     }
 
+.empty-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #775a3e;
+    margin: 0;
+    /* Add this to fill the .messages area */
+    height: 100%;
+    width: 100%;
+}
+
 footer {
     padding: 40px 20px;
     text-align: center;
