@@ -38,7 +38,12 @@ header {
         color: #64ffda;
         cursor: pointer;
         text-decoration: none;
+        transition: color 0.4s ease;
     }
+
+        header .logo:hover {
+            color: #acacac;
+        }
 
 .header-with-line {
     display: flex;
@@ -56,16 +61,16 @@ header {
 
 .nameofproject {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 75px;
     color: #f1e5da;
 }
 
 .enterinproject {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0;
     font-size: 30px;
-    color: #f1e5da;
+    color: #d1c6bd;
 }
 
 .project-body {

@@ -14,13 +14,13 @@
 </div>
 
 <div class="sign-up-container" data-aos="fade-up" data-aos-duration="2000">
-    <form method="post" asp-controller="Participant" asp-action="SignUpController">
+    <form method="post" asp-controller="Participant" asp-action="SignUp">
         <label asp-for="nickname">Nickname:</label>
-        <input asp-for="nickname" type="text" id="nickname" name="nickname" required /><br>
+        <input asp-for="nickname" type="text" id="nickname" name="nickname" minlength="4" required /><br>
         <span asp-validation-for="nickname" class="text-danger"></span>
 
         <label asp-for="password">Password:</label>
-        <input asp-for="password" type="password" id="password" name="password" required /><br>
+        <input asp-for="password" type="password" id="password" name="password" minlength="8" required /><br>
         <span asp-validation-for="password" class="text-danger"></span>
 
         <div class="button-container">

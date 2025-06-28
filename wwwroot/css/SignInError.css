@@ -1,4 +1,4 @@
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,23 +12,6 @@ body {
     background-color: #342619;
     margin: 0;
     overflow: hidden;
-}
-
-.intro-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #261c12;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Fredoka One', sans-serif;
-    font-size: 100px;
-    color: #f1dcbe;
-    transition: transform 0.5s ease-in-out;
-    z-index: 10;
 }
 
 .info-container {

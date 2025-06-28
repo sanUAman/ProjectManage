@@ -12,7 +12,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="ExistingProjects" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <a class="logo" asp-controller="Participant" asp-action="MainPage" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
 </header>
 
 <div class="header-with-line">
@@ -31,7 +31,7 @@
             <input type="hidden" name="password" value="@ViewBag.password" />
 
             <label asp-for="Name">Name of Project:</label>
-            <input asp-for="Name" type="text" id="Name" name="Name" required><br>
+            <input asp-for="Name" type="text" id="Name" name="Name" maxlength="24" required><br>
             <span asp-validation-for="Name" class="text-danger"></span>
 
             <div class="button-container">

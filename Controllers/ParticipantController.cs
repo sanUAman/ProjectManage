@@ -21,6 +21,12 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        [Route("SignInError")]
+        public IActionResult SignInError()
+        {
+            return View();
+        }
+
         private readonly ApplicationDbContext _context;
 
         public ParticipantController(ApplicationDbContext context)
@@ -44,7 +50,7 @@ namespace ProjectManage.Controllers
             _context.Participants.Add(participant);
             _context.SaveChanges();
 
-            return RedirectToAction("ExistingProjects", new { nickname = participant.nickname, password = participant.password });
+            return RedirectToAction("MainPage", new NewRecord(participant.nickname, participant.password));
         }
 
         [HttpPost]
@@ -54,13 +60,13 @@ namespace ProjectManage.Controllers
 
             if (participant == null)
             {
-                return NotFound("This profile doesn't exist!");
+                return RedirectToAction("SignInError");
             }
 
-            return RedirectToAction("ExistingProjects", new { nickname = nickname, password = password });
+            return RedirectToAction("MainPage", new { nickname = nickname, password = password });
         }
 
-        public IActionResult ExistingProjects(string nickname, string password)
+        public IActionResult MainPage(string nickname, string password)
         {
             var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
 
@@ -231,10 +237,10 @@ namespace ProjectManage.Controllers
             _context.ProjectParticipants.Add(newProjectParticipant);
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
+            return RedirectToAction("ManagerProject", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
         }
 
-        public IActionResult Project(int id, string name, string nickname, string password)
+        public IActionResult ManagerProject(int id, string name, string nickname, string password)
         {
             var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
 
@@ -307,7 +313,7 @@ namespace ProjectManage.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password });
+            return RedirectToAction("ManagerProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password });
         }
 
         [HttpPost]
@@ -363,7 +369,7 @@ namespace ProjectManage.Controllers
             _context.ProjectParticipants.Add(projectParticipant);
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = projectId, name = projectName, nickname = nicknameManager, password = passwordManager });
+            return RedirectToAction("ManagerProject", "Participant", new { id = projectId, name = projectName, nickname = nicknameManager, password = passwordManager });
         }
 
         [HttpPost]
@@ -381,7 +387,7 @@ namespace ProjectManage.Controllers
                 _context.ProjectParticipants.Remove(participant);
                 _context.SaveChanges();
 
-                return RedirectToAction("ExistingProjects", new { nickname = nickname, password = password });
+                return RedirectToAction("MainPage", new { nickname = nickname, password = password });
             }
 
             ViewBag.Nickname = nickname;
@@ -390,8 +396,10 @@ namespace ProjectManage.Controllers
             _context.ProjectParticipants.Remove(participant);
             _context.SaveChanges();
 
-            return RedirectToAction("Project", "Participant", new { id = participant.ProjectId, name = participant.ProjectName, nickname = nickname, password = password });
+            return RedirectToAction("ManagerProject", "Participant", new { id = participant.ProjectId, name = participant.ProjectName, nickname = nickname, password = password });
         }
 
     }
+
+    internal record NewRecord(string Nickname, string Password);
 }

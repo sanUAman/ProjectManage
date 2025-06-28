@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "ProjeX";
+}
+
+<link rel="stylesheet" href="~/css/SignInError.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="info-container" id="content">
+    <h1>Something is going wrong!</h1>
+    <p>In database doesn`t exist your data<br>So sign up or just remember your data)</p>
+    <div class="button-container">
+        <a href="/SignUp" class="start-button">Sign Up</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

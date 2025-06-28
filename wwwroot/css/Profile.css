@@ -35,10 +35,15 @@ header {
     header .logo {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #64ffda;
+        color: #F0F7F4;
         cursor: pointer;
         text-decoration: none;
+        transition: color 0.4s ease;
     }
+
+        header .logo:hover {
+            color: #acacac;
+        }
 
     header nav {
         display: flex;
@@ -47,19 +52,24 @@ header {
         header nav .exit {
             padding: 0 20px;
             margin-top: 14px;
-            color: #f1e5da;
+            color: #F0F7F4;
             font-size: 1.2rem;
+            transition: color 0.4s ease;
         }
+
+            header nav .exit:hover {
+                color: #acacac;
+            }
 
         header nav .profile {
             padding: 10px 20px;
             border: 3px solid #5b442e;
             border-radius: 50px;
             text-decoration: none;
-            color: #f1e5da;
+            color: #F0F7F4;
             background-color: #453221;
             font-size: 1.2rem;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.4s ease;
         }
 
             header nav .profile:hover {
@@ -122,7 +132,7 @@ header {
 
 .name-of-container {
     font-size: 25px;
-    color: #f1e5da;
+    color: #d1c6bd;
     margin-bottom: 10px;
 }
 
