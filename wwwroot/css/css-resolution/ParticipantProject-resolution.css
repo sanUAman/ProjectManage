@@ -1,0 +1,90 @@
+﻿@media (min-width: 320px) and (max-width: 474px) and (min-height: 640px) {
+    .nameofproject {
+        margin-top: 40px;
+        font-size: 40px;
+    }
+
+    .enterinproject {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    .participants {
+        width: 215px;
+        padding: 10px;
+    }
+
+    .participant-card {
+        font-size: 15px;
+    }
+
+    .info-container {
+        gap: 100px;
+        margin-top: 0;
+    }
+
+    .progress {
+        width: 215px;
+        height: 215px;
+    }
+}
+
+@media (min-width: 475px) and (max-width: 774px) and (min-height: 640px) {
+    .nameofproject {
+        margin-top: 40px;
+        font-size: 60px;
+    }
+
+    .enterinproject {
+        margin-top: 0;
+        font-size: 25px;
+    }
+
+    .info-container {
+        gap: 100px;
+        margin-top: 0;
+    }
+
+    .participants {
+        width: 300px;
+        padding: 15px;
+    }
+
+    .participant-card {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 775px) and (max-width: 924px) and (min-height: 640px) {
+    .nameofproject {
+        margin-top: 40px;
+        font-size: 65px;
+    }
+
+    .enterinproject {
+        margin-top: 0;
+        font-size: 30px;
+    }
+
+    .info-container {
+        gap: 50px;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 925px) and (max-width: 1075px) and (min-height: 640px) {
+    .nameofproject {
+        margin-top: 40px;
+        font-size: 65px;
+    }
+
+    .enterinproject {
+        margin-top: 0;
+        font-size: 30px;
+    }
+
+    .info-container {
+        gap: 200px;
+        margin-top: 20px;
+    }
+}

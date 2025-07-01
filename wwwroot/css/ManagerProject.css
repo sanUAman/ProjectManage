@@ -9,7 +9,7 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
     background: linear-gradient(to bottom, #342619, #231a11);
-    height: 156.4vh;
+    height: 100%;
 }
 
 header {
@@ -84,10 +84,12 @@ header {
 
 .info-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 350px;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
+    padding: 50px;
 }
 
 .participants-container {
@@ -240,7 +242,7 @@ footer {
     align-items: center;
     position: relative;
     max-width: 70%;
-    margin: 110px auto 0 auto;
+    margin: 55px auto 0 auto;
 }
 
     .footer-with-line .line {

@@ -1,0 +1,56 @@
+﻿@media (min-width: 320px) and (max-width: 459px) and (min-height: 640px) {
+    .title {
+        font-size: 30px;
+        margin-bottom: 35px;
+        margin-top: 100px;
+    }
+
+    .project-container {
+        padding: 15px;
+    }
+
+    input {
+        width: 250px;
+    }
+
+    .create-button,
+    .back-button {
+        padding: 7px 17px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 679px) and (min-height: 640px) {
+    .title {
+        font-size: 35px;
+        margin-bottom: 35px;
+        margin-top: 100px;
+    }
+
+    .project-container {
+        padding: 30px;
+    }
+
+    input {
+        width: 350px;
+    }
+}
+
+@media (min-width: 849px) and (max-width: 1200px) and (min-height: 640px) {
+    .project-container {
+        padding: 45px;
+    }
+
+    input {
+        width: 500px;
+    }
+
+    .project-container {
+        max-width: 700px;
+    }
+
+    label {
+        font-size: 22px;
+    }
+}
+

@@ -4,13 +4,14 @@
     ViewData["Title"] = "ProjeX";
 }
 <link rel="stylesheet" href="~/css/Adding.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/css-resolution/Adding-resolution.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
-<div class="project-header">
+<div class="adding-header">
     <h1 class="Title">Add Participant</h1>
 </div>
 
-<div class="project-container">
+<div class="adding-container">
     <form method="post" asp-controller="Participant" asp-action="AddingParticipants">
         <input type="hidden" name="projectId" value="@Model.ProjectId" />
         <input type="hidden" name="projectName" value="@Model.ProjectName" />

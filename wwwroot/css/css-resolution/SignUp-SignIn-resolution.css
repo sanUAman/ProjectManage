@@ -1,0 +1,19 @@
+﻿@media (min-width: 320px) and (max-width: 489px) and (min-height: 640px) {
+    .title {
+        margin-bottom: 35px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+
+    input {
+        width: 230px;
+    }
+}
+
+@media (max-width: 360px) and (min-height: 640px) {
+    .intro-screen {
+        font-size: 80px;
+    }
+}

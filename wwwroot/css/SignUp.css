@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #342619;
+    background: linear-gradient(to bottom, #342619, #231a11);
     margin: 0;
 }
 
@@ -33,7 +33,7 @@
     color: #F0F7F4;
 }
 
-.sign-up-container {
+.container {
     border: 3px solid #5b442e;
     padding: 40px;
     border-radius: 10px;
@@ -67,7 +67,7 @@ input {
     gap: 10px;
 }
 
-.sign-up-button {
+.button {
     padding: 10px 20px;
     border: 4px solid #996633;
     background-color: #cc9933;
@@ -79,7 +79,7 @@ input {
     transition: background-color 0.3s ease;
 }
 
-    .sign-up-button:hover {
+    .button:hover {
         background-color: #a9802d;
     }
 

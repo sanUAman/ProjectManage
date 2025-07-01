@@ -1,0 +1,19 @@
+﻿@media (min-width: 320px) and (max-width: 399px) and (min-height: 640px) {
+    .info-header {
+        font-size: 20px;
+    }
+    
+    input {
+        width: 200px;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 449px) and (min-height: 640px) {
+    .info-header {
+        font-size: 25px;
+    }
+
+    input {
+        width: 250px;
+    }
+}

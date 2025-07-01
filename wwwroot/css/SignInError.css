@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #342619;
+    background: linear-gradient(to bottom, #342619, #231a11);
     margin: 0;
     overflow: hidden;
 }

@@ -9,10 +9,10 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: var(--bg-color);
+    background: linear-gradient(to bottom, #342619, #231a11);
 }
 
-.project-header {
+.adding-header {
     color: #f1e5da;
     font-size: 30px;
     text-align: center;

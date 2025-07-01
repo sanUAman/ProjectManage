@@ -2,22 +2,20 @@
 
 @{
     ViewData["Title"] = "ProjeX";
-
     var ErrorMessage = ViewBag.ErrorMessage as string;
 }
 
 <link rel="stylesheet" href="~/css/SignIn.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/css-resolution/SignUp-SignIn-resolution.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <div class="intro-screen" id="intro">ProjeX</div>
 
 <div class="header">
-    <h2 class="title" data-aos="fade-up" data-aos-duration="1500">Sign In</h2>
+    <h2 class="title">Sign In</h2>
 </div>
 
-<div class="sign-in-container" data-aos="fade-up" data-aos-duration="2000">
+<div class="container">
     <form method="post" asp-controller="Participant" asp-action="SignInController">
 
         <label asp-for="nickname">Nickname:</label>
@@ -29,14 +27,14 @@
         <span asp-validation-for="password" class="text-danger"></span>
 
         <div class="button-container">
-            <button type="submit" class="sign-in-button">Submit</button>
+            <button type="submit" class="button">Submit</button>
             <a class="back-button" href="SignUp">Back</a>
         </div>
     </form>
 </div>
 
 <div class="link-container">
-    <a class="link-button" href="/SignUp" data-aos="fade-up" data-aos-duration="2500">Don`t have a profile?</a>
+    <a class="link-button" href="/SignUp">Don`t have a profile?</a>
 </div>
 
 @section Scripts {

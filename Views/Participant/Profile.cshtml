@@ -7,13 +7,13 @@
 }
 
 <link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/css-resolution/Profile-resolution.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <header>
     <a class="logo" asp-controller="Participant" asp-action="MainPage" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="menu">
         <a class="profile" asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
         <a class="exit" href="/SignIn">
@@ -26,8 +26,8 @@
     <div class="line"></div>
 </div>
 
-<div class="customization">
-    <p class="updates">More updates coming soon...</p>
+<div class="updates">
+    <p>More updates coming soon...</p>
 </div>
 
 <div class="container-wrapper">
@@ -112,8 +112,19 @@
             });
         });
 
-        AOS.init({
-            once: true
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            menuToggle.textContent = nav.classList.contains('open') ? "✖" : "☰";
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 750) {
+                nav.classList.remove('open');
+                menuToggle.textContent = "☰";
+            }
         });
     </script>
 }

@@ -1,0 +1,5 @@
+﻿@media (min-width: 320px) and (max-width: 450px) and (min-height: 640px) {
+    .info-container p {
+        padding: 15px;
+    }
+}

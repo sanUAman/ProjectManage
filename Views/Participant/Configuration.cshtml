@@ -7,13 +7,14 @@
 }
 
 <link rel="stylesheet" href="~/css/Configuration.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/css-resolution/Configuration-resolution.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
-<div class="project-header">
+<div class="configuration-header">
     <h1 class="Title">Participant configuration</h1>
 </div>
 
-<div class="project-container">
+<div class="configuration-container">
     <form method="post" asp-controller="Participant" asp-action="SaveParticipant">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
@@ -45,11 +46,13 @@
         </div>
     </form>
 
-    <form method="post" asp-controller="Participant" asp-action="DeleteParticipant">
-        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-        <input type="hidden" name="password" value="@ViewBag.password" />
+    <div class="delete-button-div">
+        <form method="post" asp-controller="Participant" asp-action="DeleteParticipant">
+            <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+            <input type="hidden" name="password" value="@ViewBag.password" />
 
-        <input type="hidden" name="participantId" value="@Model.Id" />
-        <button type="submit" class="delete-button">Delete</button>
-    </form>
+            <input type="hidden" name="participantId" value="@Model.Id" />
+            <button type="submit" class="delete-button">Delete</button>
+        </form>
+    </div>
 </div>

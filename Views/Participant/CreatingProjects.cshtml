@@ -8,6 +8,7 @@
 }
 
 <link rel="stylesheet" href="~/css/CreatingProjects.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/css-resolution/CreatingProjects-resolution.css" asp-append-version="true" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -19,26 +20,28 @@
     <div class="line"></div>
 </div>
 
-<div>
-    <h1 class="title">Create a project</h1>
-</div>
+<div class="main-container">
+    <div>
+        <h1 class="title">Create a project</h1>
+    </div>
 
-<div class="center-block">
-    <div class="project-container">
-        <form method="post" asp-controller="Participant" asp-action="Create">
+    <div class="container">
+        <div class="project-container">
+            <form method="post" asp-controller="Participant" asp-action="Create">
 
-            <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-            <input type="hidden" name="password" value="@ViewBag.password" />
+                <input type="hidden" name="nickname" value="@ViewBag.nickname" />
+                <input type="hidden" name="password" value="@ViewBag.password" />
 
-            <label asp-for="Name">Name of Project:</label>
-            <input asp-for="Name" type="text" id="Name" name="Name" maxlength="24" required><br>
-            <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Name">Name of Project:</label>
+                <input asp-for="Name" type="text" id="Name" name="Name" maxlength="24" required><br>
+                <span asp-validation-for="Name" class="text-danger"></span>
 
-            <div class="button-container">
-                <button type="submit" class="create-button">Create</button>
-                <a href="/" class="back-button">Back</a>
-            </div>
-        </form>
+                <div class="button-container">
+                    <button type="submit" class="create-button">Create</button>
+                    <a href="/" class="back-button">Back</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

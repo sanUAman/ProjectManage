@@ -1,0 +1,103 @@
+﻿@media (max-width: 750px) {
+    nav {
+        visibility: hidden;
+        opacity: 0;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgba(57,43,28,1);
+        width: 100%;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #5b442e;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        nav.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+@media (min-width: 751px) {
+    nav {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 489px) and (min-height: 640px) {
+    .updates {
+        padding: 50px;
+    }
+    
+        .updates p {
+            font-size: 2rem;
+        }
+    
+    .name-of-container {
+        font-size: 13px;
+    }
+    
+    .messages {
+        width: 250px;
+        height: 200px;
+    }
+
+    .empty-container {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 490px) and (max-width: 699px) and (min-height: 640px) {
+    .updates {
+        padding: 50px;
+    }
+
+        .updates p {
+            font-size: 2rem;
+        }
+
+    .name-of-container {
+        font-size: 13px;
+    }
+
+    .messages {
+        width: 400px;
+        height: 250px;
+    }
+
+    .empty-container {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1200px) and (min-height: 640px) {
+    .updates {
+        padding: 50px;
+    }
+
+        .updates p {
+            font-size: 3rem;
+        }
+
+    .name-of-container {
+        font-size: 20px;
+    }
+
+    .messages {
+        width: 600px;
+        height: 400px;
+    }
+
+    .empty-container {
+        font-size: 25px;
+    }
+}

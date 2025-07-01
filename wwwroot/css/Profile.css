@@ -9,7 +9,7 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
     background: linear-gradient(to bottom, #342619, #231a11);
-    height: 139.4vh;
+    height: 100%;
 }
 
 header {
@@ -50,7 +50,7 @@ header {
     }
 
         header nav .exit {
-            padding: 0 20px;
+            padding: 0 15px;
             margin-top: 14px;
             color: #F0F7F4;
             font-size: 1.2rem;
@@ -76,6 +76,20 @@ header {
                 background-color: #231a11;
             }
 
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #64ffda;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+    .menu-toggle.open {
+        content: "?";
+    }
+
 .header-with-line {
     display: flex;
     align-items: center;
@@ -90,38 +104,23 @@ header {
         background-color: #996633;
     }
 
-.customization {
+.updates {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     height: 30vh;
+    padding: 50px;
 }
 
-    .customization .updates {
+    .updates p {
+        text-align: center;
         font-size: 4rem;
         color: #f1e5da;
-    }
-
-.main-with-line {
-    display: flex;
-    align-items: center;
-    position: relative;
-    max-width: 70%;
-    margin: 0 auto 0 auto;
-}
-
-    .main-with-line .line {
-        flex-grow: 1;
-        height: 1px;
-        background-color: #996633;
     }
 
 .container-wrapper {
     display: flex;
     justify-content: center;
-    gap: 75px;
-    margin-top: 30px;
 }
 
 .messages-container {
@@ -169,10 +168,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: 40px;
     color: #775a3e;
     margin: 0;
-    /* Add this to fill the .messages area */
     height: 100%;
     width: 100%;
 }
@@ -189,7 +188,7 @@ footer {
     align-items: center;
     position: relative;
     max-width: 70%;
-    margin: 110px auto 0 auto;
+    margin: 105px auto 20px auto;
 }
 
     .footer-with-line .line {

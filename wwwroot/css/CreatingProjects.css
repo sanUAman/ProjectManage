@@ -9,7 +9,7 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
     background: linear-gradient(to bottom, #342619, #231a11);
-    height: 87.9vh;
+    height: 100vh;
 }
 
 header {
@@ -54,7 +54,6 @@ header {
         background-color: #996633;
     }
 
-/* Контент */
 .title {
     text-align: center;
     margin-top: 125px;
@@ -63,10 +62,18 @@ header {
     color: #f1e5da;
 }
 
-.center-block {
+.main-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .project-container {
