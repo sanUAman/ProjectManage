@@ -24,7 +24,7 @@ ProjeX is a web application for managing team and individual projects, implement
 
 ---
 
-## 📂 Структура проєкту
+## 📂 Project structure
 - Controllers/ — request processing logic (Home, Participant)
 - Models/ — classes Participant, NameOfProject, ProjectParticipant
 - Views/ — Razor-pages for the interface
