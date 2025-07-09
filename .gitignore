@@ -9,6 +9,12 @@ obj/
 *.editorconfig
 *.json
 
+# SQL Server files
+*.mdf
+*.ldf
+*.bak
+*.sql
+
 **/staticwebassets.*
 
 *.FileListAbsolute.txt
