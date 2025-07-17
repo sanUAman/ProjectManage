@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "ProjeX";
-    var nickname = ViewBag.Nickname;
-    var password = ViewBag.Password;
 }
 
 <link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
@@ -12,10 +10,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="MainPage" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <a class="logo" asp-controller="Participant" asp-action="MainPage">ProjeX</a>
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="menu">
-        <a class="profile" asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
+        <a class="profile" asp-controller="Participant" asp-action="Profile">@ViewBag.Nickname</a>
         <a class="exit" href="/SignIn">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -33,8 +31,6 @@
 <div class="container-wrapper">
     <form method="post" asp-controller="Participant" asp-action="Messages">
         <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-        <input type="hidden" name="password" value="@ViewBag.password" />
-
         <div class="messages-container">
             <div class="name-of-container">
                 <p>Your messages:</p>
@@ -44,7 +40,7 @@
                 {
                     foreach (var message in ViewBag.Messages)
                     {
-                        <a class="message-card" asp-controller="Participant" asp-action="Messages" asp-route-nickname="@nickname">
+                        <a class="message-card" asp-controller="Participant" asp-action="Messages">
                             @message
                         </a>
                     }

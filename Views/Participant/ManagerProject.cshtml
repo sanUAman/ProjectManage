@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "ProjeX";
-    var nickname = ViewBag.Nickname;
-    var password = ViewBag.Password;
 }
 
 <link rel="stylesheet" href="~/css/ManagerProject.css" asp-append-version="true" />
@@ -12,7 +10,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="MainPage" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <a class="logo" asp-controller="Participant" asp-action="MainPage">ProjeX</a>
 </header>
 
 <div class="header-with-line">
@@ -24,14 +22,7 @@
     <h2 class="enterinproject">You entered like - @ViewBag.UserRole</h2>
 </div>
 
-<form method="post" asp-controller="Participant" asp-action="AddingRedirect">
-
-    <input type="hidden" asp-for="@Model.Id" />
-    <input type="hidden" asp-for="@Model.Name" />
-
-    <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-    <input type="hidden" name="password" value="@ViewBag.password" />
-
+<form method="post">
     <div class="project-body">
         <div class="info-container">
             <div class="participants-container">
@@ -41,13 +32,13 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-id="@participant.Id" asp-route-nickname="@participant.nickname">
                                 @participant.nickname
                             </a>
                         }
                     }
                 </div>
-                <button type="submit" class="add-button">Add Participant</button>
+                <a class="add-button" asp-controller="Participant" asp-action="Adding" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Add Participant</a>
             </div>
 
             <div class="progress-container">

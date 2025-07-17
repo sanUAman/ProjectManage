@@ -8,6 +8,7 @@ obj/
 *.props
 *.editorconfig
 *.json
+*.vs/
 
 # SQL Server files
 *.mdf

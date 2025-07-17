@@ -2,8 +2,6 @@
 
 @{
     ViewData["Title"] = "ProjeX";
-    var nickname = ViewBag.Nickname;
-    var password = ViewBag.Password;
 }
 
 <link rel="stylesheet" href="~/css/MainPage.css" asp-append-version="true" />
@@ -15,7 +13,7 @@
     <div class="logo" onclick="location.reload()">ProjeX</div>
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="menu">
-        <a class="profile" asp-controller="Participant" asp-action="Profile" asp-route-nickname="@nickname" asp-route-password="@password">@nickname</a>
+        <a class="profile" asp-controller="Participant" asp-action="Profile">@ViewBag.Nickname</a>
         <a class="exit" href="/SignIn">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -27,10 +25,7 @@
 </div>
 
 <div class="container-wrapper">
-    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
-        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-        <input type="hidden" name="password" value="@ViewBag.password" />
-
+    <form method="post" asp-controller="Participant" asp-action="MainPage">
         <div class="projects-container">
             <div class="name-of-container">
                 <p>You are not CEO in:</p>
@@ -40,7 +35,7 @@
                 {
                     foreach (var project in ViewBag.Projects)
                     {
-                        <a class="project-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@project.ProjectName" asp-route-id="@project.ProjectId" asp-route-nickname="@nickname" asp-route-password="@password">
+                        <a class="project-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@project.ProjectId" asp-route-name="@project.ProjectName">
                             @project.ProjectName
                         </a>
                     }
@@ -55,20 +50,17 @@
         </div>
     </form>
 
-    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
-        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-        <input type="hidden" name="password" value="@ViewBag.password" />
-
+    <form method="post" asp-controller="Participant" asp-action="MainPage">
         <div class="manager-container">
             <div class="name-of-container">
                 <p>You are CEO in:</p>
             </div>
             <div class="manager-projects">
-                @if (ViewBag.ManagingProjects != null)
+                @if (ViewBag.ManagingProjects != null && ViewBag.ManagingProjects.Count > 0)
                 {
                     foreach (var managingProject in ViewBag.ManagingProjects)
                     {
-                        <a class="manager-card" asp-controller="Participant" asp-action="ManagerProject" asp-route-Name="@managingProject.ProjectName" asp-route-id="@managingProject.ProjectId" asp-route-nickname="@nickname" asp-route-password="@password">
+                        <a class="manager-card" asp-controller="Participant" asp-action="ManagerProject" asp-route-id="@managingProject.ProjectId" asp-route-name="@managingProject.ProjectName">
                             @managingProject.ProjectName
                         </a>
                     }
@@ -80,24 +72,21 @@
                     </div>
                 }
             </div>
-            <a class="project-button" asp-controller="Participant" asp-action="CreatingProjects" asp-route-nickname="@nickname" asp-route-password="@password">Create Project</a>
+            <a class="project-button" asp-controller="Participant" asp-action="CreatingProjects">Create Project</a>
         </div>
     </form>
 
-    <form method="post" asp-controller="Participant" asp-action="ExistingProjects">
-        <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-        <input type="hidden" name="password" value="@ViewBag.password" />
-
+    <form method="post" asp-controller="Participant" asp-action="MainPage">
         <div class="tasks-container">
             <div class="name-of-container">
                 <p>Tasks:</p>
             </div>
             <div class="tasks">
-                @if (ViewBag.Tasks != null)
+                @if (ViewBag.Tasks != null && ViewBag.Tasks.Count > 0)
                 {
                     foreach (var task in ViewBag.Tasks)
                     {
-                        <a class="task-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-Name="@task.ProjectName" asp-route-id="@task.ProjectId" asp-route-nickname="@nickname" asp-route-password="@password">
+                        <a class="task-card" asp-controller="Participant" asp-action="ParticipantProject">
                             @task.Tasks
                         </a>
                     }

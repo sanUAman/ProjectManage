@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using ProjectManage.Models;
 using ProjectManage.Data;
 using System.Data;
+using Microsoft.AspNetCore.Http;
 using Mysqlx.Crud;
-using System.Threading.Tasks;
 
 namespace ProjectManage.Controllers
 {
@@ -37,38 +38,53 @@ namespace ProjectManage.Controllers
         [HttpPost]
         public IActionResult SignUpController(Participant participant)
         {
-            if (_context.Participants.Any(p => p.nickname == participant.nickname))
-            {
-                return NotFound("This nickname is already in use!");
-            }
-
-            if (_context.Participants.Any(p => p.password == participant.password))
-            {
-                return NotFound("This password is already in use!");
-            }
+            var passwordHasher = new PasswordHasher<Participant>();
+            participant.passwordHash = passwordHasher.HashPassword(participant, participant.password);
 
             _context.Participants.Add(participant);
             _context.SaveChanges();
 
-            return RedirectToAction("MainPage", new NewRecord(participant.nickname, participant.password));
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
+
+            return RedirectToAction("MainPage");
         }
 
         [HttpPost]
         public IActionResult SignInController(string nickname, string password)
         {
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname);
 
             if (participant == null)
             {
                 return RedirectToAction("SignInError");
             }
 
-            return RedirectToAction("MainPage", new { nickname = nickname, password = password });
+            var passwordHasher = new PasswordHasher<Participant>();
+            var result = passwordHasher.VerifyHashedPassword(participant, participant.passwordHash, password);
+
+            if (result == PasswordVerificationResult.Success)
+            {
+                HttpContext.Session.SetInt32("participantId", participant.Id);
+                HttpContext.Session.SetString("nickname", participant.nickname);
+                HttpContext.Session.SetString("password", participant.passwordHash);
+
+                return RedirectToAction("MainPage");
+            }
+            else
+            {
+                return RedirectToAction("SignInError");
+            }
         }
 
-        public IActionResult MainPage(string nickname, string password)
+        public IActionResult MainPage()
         {
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
+
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.Id == participantid);
 
             if (participant == null)
             {
@@ -83,14 +99,21 @@ namespace ProjectManage.Controllers
             ViewBag.ManagingProjects = managingProjects;
             ViewBag.Projects = projects;
             ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
 
             return View();
         }
 
-        public IActionResult Profile(string nickname, string password)
+        public IActionResult Profile()
         {
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
+
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.Id == participantid);
 
             if (participant == null)
             {
@@ -98,28 +121,30 @@ namespace ProjectManage.Controllers
             }
 
             ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
 
             return View();
         }
 
-        public IActionResult ParticipantProject(int id, string name, string nickname, string password)
+        public IActionResult ParticipantProject(int id, string name)
         {
-            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id && p.Name == name);
 
             if (project == null)
             {
-                return NotFound("Project not found!");
+                return NotFound("This project doesn't exist");
             }
 
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.Id == participantid);
 
             if (participant == null)
             {
                 return NotFound("Participant not found!");
             }
 
-            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participant.Id);
+            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participantid);
 
             string role = "";
 
@@ -142,43 +167,80 @@ namespace ProjectManage.Controllers
             int completedTasks = projectParticipants.Count(pu => pu.Status);
 
             ViewBag.Participants = participants;
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
             ViewBag.UserRole = role;
 
-            return View(new NameOfProject { Id = id, Name = name });
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
+
+            return View(project);
         }
 
-        public IActionResult Info(int projectId, int participantId, string nickname, string password)
+        public IActionResult Info(int id, string nickname)
         {
-            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantId && pu.ProjectId == projectId);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var MainParticipantNickname = HttpContext.Session.GetString("nickname");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
+
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectid && p.Name == projectname);
+
+            if (project == null)
+            {
+                return NotFound("This project doesn't exist");
+            }
+
+            var mainParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantid && pu.ParticipantName == MainParticipantNickname && pu.ProjectId == projectid);
+
+            if (mainParticipant == null)
+            {
+                return NotFound("your data is not valid");
+            }
+
+            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == id && pu.ParticipantName == nickname && pu.ProjectId == projectid);
 
             if (participant == null)
             {
-                return NotFound("This participant doesn`t exist in this project :(");
+                return NotFound("Participant not found!");
             }
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
-            ViewBag.ProjectName = participant.ProjectName;
-            ViewBag.ProjectId = participant.ProjectId;
+            ViewBag.ProjectId = project.Id;
+            ViewBag.ProjectName = project.Name;
+            ViewBag.CanEditStatus = string.Equals(mainParticipant.ParticipantName, nickname, StringComparison.OrdinalIgnoreCase);
 
-            ViewBag.CanEditStatus = string.Equals(participant.ParticipantName, nickname, StringComparison.OrdinalIgnoreCase);
+            HttpContext.Session.SetInt32("targetParticipantId", participant.ParticipantId);
+            HttpContext.Session.SetInt32("mainParticipantId", mainParticipant.ParticipantId);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
 
             return View(participant);
         }
 
-        public IActionResult Save(ProjectParticipant updatedParticipant, string nickname, string password)
+        public IActionResult Save(ProjectParticipant updatedParticipant)
         {
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var targetId = HttpContext.Session.GetInt32("targetParticipantId");
+            var mainParticipantId = HttpContext.Session.GetInt32("mainParticipantId");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
 
-            if (participant == null)
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectid && p.Name == projectname);
+
+            if (project == null)
             {
-                return NotFound("We got some troubles with link :(");
+                return NotFound("This project doesn't exist");
             }
 
-            var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
+            var mainParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == mainParticipantId && pu.ProjectId == projectid);
+
+            if (mainParticipant == null)
+            {
+                return NotFound("Your data is not valid! (nickname)");
+            }
+
+            var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == targetId && pu.ProjectId == projectid);
 
             if (existingParticipant == null)
             {
@@ -187,33 +249,50 @@ namespace ProjectManage.Controllers
 
             existingParticipant.Status = updatedParticipant.Status;
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
-
             _context.SaveChanges();
 
-            return RedirectToAction("ParticipantProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password });
+            HttpContext.Session.SetInt32("managerid", mainParticipant.ParticipantId);
+            HttpContext.Session.SetString("nicknamemanager", mainParticipant.ParticipantName);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
+
+            return RedirectToAction("ParticipantProject", "Participant", new { id = projectid, name = projectname });
         }
 
         /// Manager Controller
 
-        public IActionResult CreatingProjects(string nickname, string password)
+        public IActionResult CreatingProjects()
         {
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname);
+
+            if (participant == null)
+            {
+                return RedirectToAction("SignInError");
+            }
+
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(NameOfProject nameofproject, string nickname, string password)
+        public IActionResult Create(NameOfProject nameofproject)
         {
-            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname && u.password == password);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
+
+            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname);
 
             if (participant == null)
             {
-                return NotFound("Participant data not valid! (nickname or password)");
+                return RedirectToAction("SignInError");
             }
 
             _context.NamesOfProjects.Add(nameofproject);
@@ -225,38 +304,43 @@ namespace ProjectManage.Controllers
                 ProjectName = nameofproject.Name,
                 ParticipantId = participant.Id,
                 ParticipantName = participant.nickname,
-                ParticipantPassword = participant.password,
+                ParticipantPassword = participant.passwordHash,
                 Role = "CEO",
                 Tasks = "",
                 Status = false,
             };
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
-
             _context.ProjectParticipants.Add(newProjectParticipant);
             _context.SaveChanges();
 
-            return RedirectToAction("ManagerProject", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
+
+            return RedirectToAction("ManagerProject", "Participant", new { id = nameofproject.Id, name = nameofproject.Name });
         }
 
-        public IActionResult ManagerProject(int id, string name, string nickname, string password)
+        public IActionResult ManagerProject(int id, string name)
         {
-            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
+
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id && p.Name == name);
 
             if (project == null)
             {
                 return NotFound("This project doesn't exist");
             }
 
-            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.password == password);
+            var participant = _context.Participants.FirstOrDefault(p => p.nickname == nickname && p.Id == participantid);
 
             if (participant == null)
             {
-                return NotFound("Participant not found");
+                return NotFound("Participant not found!");
             }
 
-            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participant.Id);
+            var projectParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ProjectId == id && pu.ParticipantId == participantid);
 
             string role = "";
 
@@ -275,29 +359,80 @@ namespace ProjectManage.Controllers
             int completedTasks = projectParticipants.Count(pu => pu.Status);
 
             ViewBag.Participants = participants;
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
             ViewBag.CompletionPercentage = totalParticipants > 0 ? (completedTasks * 100) / totalParticipants : 0;
             ViewBag.UserRole = role;
+            ViewBag.ProjectId = id;
+            ViewBag.ProjectName = name;
 
-            return View(new NameOfProject { Id = id, Name = name });
+            HttpContext.Session.SetInt32("participantId", participant.Id);
+            HttpContext.Session.SetString("nickname", participant.nickname);
+            HttpContext.Session.SetString("password", participant.passwordHash);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
+
+            return View(project);
         }
 
         [HttpGet]
-        public IActionResult Configuration(int participantId, int projectId, string nickname, string password)
+        public IActionResult Configuration(int id, string nickname)
         {
-            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantId && pu.ProjectId == projectId);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nicknameManager = HttpContext.Session.GetString("nickname");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectid && p.Name == projectname);
+
+            if (project == null)
+            {
+                return NotFound("This project doesn't exist");
+            }
+
+            var manager = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantid && pu.ParticipantName == nicknameManager && pu.ProjectId == projectid);
+
+            if (manager == null)
+            {
+                return NotFound("Manager data not valid! (nickname)");
+            }
+
+            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == id && pu.ParticipantName == nickname && pu.ProjectId == projectid);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found!");
+            }
+
+            HttpContext.Session.SetInt32("targetParticipantId", participant.ParticipantId);
+            HttpContext.Session.SetInt32("managerId", manager.ParticipantId);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
 
             return View(participant);
         }
 
         [HttpPost]
-        public IActionResult SaveParticipant(ProjectParticipant updatedParticipant, string nickname, string password)
+        public IActionResult SaveParticipant(ProjectParticipant updatedParticipant)
         {
-            var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == updatedParticipant.Id);
+            var targetId = HttpContext.Session.GetInt32("targetParticipantId");
+            var managerId = HttpContext.Session.GetInt32("managerId");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
+
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectid && p.Name == projectname);
+
+            if (project == null)
+            {
+                return NotFound("This project doesn't exist");
+            }
+
+            var manager = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == managerId && pu.ProjectId == projectid);
+
+            if (manager == null)
+            {
+                return NotFound("Manager data not valid! (nickname)");
+            }
+
+            var existingParticipant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == targetId && pu.ProjectId == projectid);
 
             if (existingParticipant == null)
             {
@@ -308,98 +443,151 @@ namespace ProjectManage.Controllers
             existingParticipant.Tasks = updatedParticipant.Tasks;
             existingParticipant.Status = updatedParticipant.Status;
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
-
             _context.SaveChanges();
 
-            return RedirectToAction("ManagerProject", "Participant", new { id = existingParticipant.ProjectId, name = existingParticipant.ProjectName, nickname = nickname, password = password });
+            HttpContext.Session.SetInt32("managerid", manager.ParticipantId);
+            HttpContext.Session.SetString("nicknamemanager", manager.ParticipantName);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
+
+            return RedirectToAction("ManagerProject", "Participant", new { id = projectid, name = projectname });
         }
 
         [HttpPost]
-        public IActionResult AddingRedirect(NameOfProject nameofproject, string nickname, string password)
+        public IActionResult DeleteParticipant()
         {
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+            var targetId = HttpContext.Session.GetInt32("targetParticipantId");
+            var managerId = HttpContext.Session.GetInt32("managerId");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
 
-            return RedirectToAction("Adding", "Participant", new { id = nameofproject.Id, name = nameofproject.Name, nickname = nickname, password = password });
+            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == targetId && pu.ProjectId == projectid);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found!");
+            }
+
+            if (participant.ParticipantId == managerId && participant.ProjectId == projectid)
+            {
+                _context.ProjectParticipants.Remove(participant);
+                _context.SaveChanges();
+
+                HttpContext.Session.SetInt32("participantId", participant.ParticipantId);
+                HttpContext.Session.SetString("nickname", participant.ParticipantName);
+                HttpContext.Session.SetString("password", participant.ParticipantPassword);
+
+                return RedirectToAction("MainPage");
+            }
+
+            _context.ProjectParticipants.Remove(participant);
+            _context.SaveChanges();
+
+            return RedirectToAction("ManagerProject", "Participant", new { id = projectid, name = projectname });
         }
 
-        public IActionResult Adding(int id, string name, string nickname, string password)
+        public IActionResult Adding(int id, string name)
         {
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nickname = HttpContext.Session.GetString("nickname");
+            var password = HttpContext.Session.GetString("password");
 
-            var projectParticipant = new ProjectParticipant { ProjectId = id, ProjectName = name };
-            return View(projectParticipant);
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == id && p.Name == name);
+
+            if (project == null)
+            {
+                return NotFound("This project doesn't exist");
+            }
+
+            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantid && pu.ProjectId == id);
+
+            if (participant == null)
+            {
+                return NotFound("Participant not found!");
+            }
+
+            HttpContext.Session.SetInt32("participantId", participant.ParticipantId);
+            HttpContext.Session.SetString("nickname", participant.ParticipantName);
+            HttpContext.Session.SetString("password", participant.ParticipantPassword);
+            HttpContext.Session.SetInt32("projectId", project.Id);
+            HttpContext.Session.SetString("projectName", project.Name);
+
+            return View(participant);
         }
 
         [HttpPost]
-        public IActionResult AddingParticipants(int projectId, string projectName, string nickname, string password, string nicknameManager, string passwordManager, string role, string tasks, bool status)
+        public IActionResult AddingParticipants(string nickname, string password, string role, string tasks, bool status)
         {
-            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname && u.password == password);
+            var participantid = HttpContext.Session.GetInt32("participantId");
+            var nicknameManager = HttpContext.Session.GetString("nickname");
+            var passwordManager = HttpContext.Session.GetString("password");
+            var projectid = HttpContext.Session.GetInt32("projectId");
+            var projectname = HttpContext.Session.GetString("projectName");
+
+            var project = _context.NamesOfProjects.FirstOrDefault(p => p.Id == projectid && p.Name == projectname);
+
+            if (project == null)
+            {
+                return NotFound("This project doesn't exist");
+            }
+
+            var manager = _context.ProjectParticipants.FirstOrDefault(pu => pu.ParticipantId == participantid && pu.ProjectId == projectid);
+
+            if (manager == null)
+            {
+                return NotFound("Manager data not valid! (nickname)");
+            }
+
+            var participant = _context.Participants.FirstOrDefault(u => u.nickname == nickname);
 
             if (participant == null)
             {
                 return NotFound("Participant data not valid! (nickname or password)");
             }
 
-            bool alreadyInProject = _context.ProjectParticipants.Any(pu => pu.ParticipantId == participant.Id && pu.ParticipantName == participant.nickname && pu.ProjectId == projectId && pu.ProjectName == projectName);
+            var passwordHasher = new PasswordHasher<Participant>();
+            var result = passwordHasher.VerifyHashedPassword(participant, participant.passwordHash, password);
 
-            if (alreadyInProject)
+            if (result == PasswordVerificationResult.Success)
             {
-                return NotFound("This one already in project or one just doesn`t exist!");
-            }
+                bool alreadyInProject = _context.ProjectParticipants.Any(pu => pu.ParticipantId == participant.Id && pu.ParticipantName == participant.nickname && pu.ProjectId == projectid && pu.ProjectName == projectname);
 
-            var projectParticipant = new ProjectParticipant
-            {
-                ParticipantId = participant.Id,
-                ProjectId = projectId,
-                ProjectName = projectName,
-                ParticipantName = nickname,
-                ParticipantPassword = password,
-                Role = role,
-                Tasks = tasks,
-                Status = status
-            };
+                if (alreadyInProject)
+                {
+                    return NotFound("This one already in project or one just doesn`t exist!");
+                }
 
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
+                var projectParticipant = new ProjectParticipant
+                {
+                    ParticipantId = participant.Id,
+                    ProjectId = project.Id,
+                    ProjectName = project.Name,
+                    ParticipantName = participant.nickname,
+                    ParticipantPassword = participant.passwordHash,
+                    Role = role,
+                    Tasks = tasks,
+                    Status = status
+                };
 
-            _context.ProjectParticipants.Add(projectParticipant);
-            _context.SaveChanges();
+                ViewBag.Nickname = nicknameManager;
+                ViewBag.Password = passwordManager;
 
-            return RedirectToAction("ManagerProject", "Participant", new { id = projectId, name = projectName, nickname = nicknameManager, password = passwordManager });
-        }
-
-        [HttpPost]
-        public IActionResult DeleteParticipant(int participantId, string nickname, string password)
-        {
-            var participant = _context.ProjectParticipants.FirstOrDefault(pu => pu.Id == participantId);
-
-            if (participant == null)
-            {
-                return NotFound("Participant not found");
-            }
-
-            if (participant.ParticipantName == nickname && participant.ParticipantPassword == password)
-            {
-                _context.ProjectParticipants.Remove(participant);
+                _context.ProjectParticipants.Add(projectParticipant);
                 _context.SaveChanges();
 
-                return RedirectToAction("MainPage", new { nickname = nickname, password = password });
+                HttpContext.Session.SetInt32("participantId", manager.ParticipantId);
+                HttpContext.Session.SetString("nickname", manager.ParticipantName);
+                HttpContext.Session.SetString("password", manager.ParticipantPassword);
+                HttpContext.Session.SetInt32("projectId", project.Id);
+                HttpContext.Session.SetString("projectName", project.Name);
+
+                return RedirectToAction("ManagerProject", "Participant", new { id = projectid, name = projectname });
             }
-
-            ViewBag.Nickname = nickname;
-            ViewBag.Password = password;
-
-            _context.ProjectParticipants.Remove(participant);
-            _context.SaveChanges();
-
-            return RedirectToAction("ManagerProject", "Participant", new { id = participant.ProjectId, name = participant.ProjectName, nickname = nickname, password = password });
+            else
+            {
+                return RedirectToAction("SignInError");
+            }
         }
-
     }
-
     internal record NewRecord(string Nickname, string Password);
 }

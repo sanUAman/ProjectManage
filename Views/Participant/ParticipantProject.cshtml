@@ -12,7 +12,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="MainPage" asp-route-nickname="@nickname" asp-route-password="@password">ProjeX</a>
+    <a class="logo" asp-controller="Participant" asp-action="MainPage">ProjeX</a>
 </header>
 
 <div class="header-with-line">
@@ -29,9 +29,6 @@
     <input type="hidden" asp-for="@Model.Id" />
     <input type="hidden" asp-for="@Model.Name" />
 
-    <input type="hidden" name="nickname" value="@ViewBag.nickname" />
-    <input type="hidden" name="password" value="@ViewBag.password" />
-
     <div class="project-body">
         <div class="info-container">
             <div class="participants-container">
@@ -41,7 +38,7 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-participantId="@participant.Id" asp-route-projectId="@Model.Id" asp-route-nickname="@nickname" asp-route-password="@password">
+                            <a class="participant-card" asp-controller="Participant" asp-action="Info" asp-route-id="@participant.Id" asp-route-nickname="@participant.nickname">
                                 @participant.nickname
                             </a>
                         }
