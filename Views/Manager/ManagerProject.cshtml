@@ -10,7 +10,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="MainPage">ProjeX</a>
+    <a class="logo" asp-controller="MainPage" asp-action="MainPage">ProjeX</a>
 </header>
 
 <div class="header-with-line">
@@ -32,13 +32,13 @@
                     {
                         foreach (var participant in ViewBag.Participants)
                         {
-                            <a class="participant-card" asp-controller="Participant" asp-action="Configuration" asp-route-id="@participant.Id" asp-route-nickname="@participant.nickname">
+                            <a class="participant-card" asp-controller="Manager" asp-action="Configuration" asp-route-id="@participant.Id" asp-route-nickname="@participant.nickname">
                                 @participant.nickname
                             </a>
                         }
                     }
                 </div>
-                <a class="add-button" asp-controller="Participant" asp-action="Adding" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Add Participant</a>
+                <a class="add-button" asp-controller="Manager" asp-action="Adding" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Add Participant</a>
             </div>
 
             <div class="progress-container">

@@ -51,14 +51,14 @@ input {
 }
 
     .save-button:hover {
-        background-color: #a9802d;
+        background-color: #7e5f21;
     }
 
 .back-button {
     display: inline-block;
     padding: 10px 25px;
-    border: 4px solid #996633;
-    background-color: #cc9933;
+    border: 4px solid #574116;
+    background-color: #7e5f21;
     margin-top: 10px;
     cursor: pointer;
     font-size: 20px;
@@ -70,14 +70,14 @@ input {
 }
 
     .back-button:hover {
-        background-color: #a9802d;
+        background-color: #c79532;
     }
 
 .else-back-button {
     display: inline-block;
     padding: 10px 25px;
-    border: 4px solid #996633;
-    background-color: #cc9933;
+    border: 4px solid #574116;
+    background-color: #7e5f21;
     margin-top: 20px;
     cursor: pointer;
     font-size: 20px;
@@ -88,6 +88,6 @@ input {
     transition: background-color 0.3s ease;
 }
 
-    .back-button:hover {
-        background-color: #a9802d;
+    .else-back-button:hover {
+        background-color: #c79532;
     }

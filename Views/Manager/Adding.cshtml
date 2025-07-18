@@ -12,12 +12,7 @@
 </div>
 
 <div class="adding-container">
-    <form method="post" asp-controller="Participant" asp-action="AddingParticipants">
-        <input type="hidden" name="projectId" value="@Model.ProjectId" />
-        <input type="hidden" name="projectName" value="@Model.ProjectName" />
-        <input type="hidden" name="nicknameManager" value="@ViewBag.Nickname" />
-        <input type="hidden" name="passwordManager" value="@ViewBag.Password" />
-
+    <form method="post" asp-controller="Manager" asp-action="AddingParticipants">
         <label for="nickname">Nickname:</label>
         <input for="nickname" type="text" id="nickname" name="nickname" required /><br />
 
@@ -37,5 +32,7 @@
         <span asp-validation-for="Status" class="text-danger"></span>
 
         <button type="submit" class="add-button">Add +</button>
+
+        <a class="back-button" asp-controller="Manager" asp-action="ManagerProject" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Back</a>
     </form>
 </div>

@@ -13,7 +13,7 @@
     <div class="logo" onclick="location.reload()">ProjeX</div>
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="menu">
-        <a class="profile" asp-controller="Participant" asp-action="Profile">@ViewBag.Nickname</a>
+        <a class="profile" asp-controller="MainPage" asp-action="Profile">@ViewBag.Nickname</a>
         <a class="exit" href="/SignIn">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="container-wrapper">
-    <form method="post" asp-controller="Participant" asp-action="MainPage">
+    <form method="post" asp-controller="MainPage" asp-action="MainPage">
         <div class="projects-container">
             <div class="name-of-container">
                 <p>You are not CEO in:</p>
@@ -50,7 +50,7 @@
         </div>
     </form>
 
-    <form method="post" asp-controller="Participant" asp-action="MainPage">
+    <form method="post" asp-controller="MainPage" asp-action="MainPage">
         <div class="manager-container">
             <div class="name-of-container">
                 <p>You are CEO in:</p>
@@ -60,7 +60,7 @@
                 {
                     foreach (var managingProject in ViewBag.ManagingProjects)
                     {
-                        <a class="manager-card" asp-controller="Participant" asp-action="ManagerProject" asp-route-id="@managingProject.ProjectId" asp-route-name="@managingProject.ProjectName">
+                        <a class="manager-card" asp-controller="Manager" asp-action="ManagerProject" asp-route-id="@managingProject.ProjectId" asp-route-name="@managingProject.ProjectName">
                             @managingProject.ProjectName
                         </a>
                     }
@@ -72,11 +72,11 @@
                     </div>
                 }
             </div>
-            <a class="project-button" asp-controller="Participant" asp-action="CreatingProjects">Create Project</a>
+            <a class="project-button" asp-controller="Manager" asp-action="CreatingProjects">Create Project</a>
         </div>
     </form>
 
-    <form method="post" asp-controller="Participant" asp-action="MainPage">
+    <form method="post" asp-controller="MainPage" asp-action="MainPage">
         <div class="tasks-container">
             <div class="name-of-container">
                 <p>Tasks:</p>
@@ -86,7 +86,7 @@
                 {
                     foreach (var task in ViewBag.Tasks)
                     {
-                        <a class="task-card" asp-controller="Participant" asp-action="ParticipantProject">
+                        <a class="task-card" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@task.ProjectId" asp-route-name="@task.ProjectName">
                             @task.Tasks
                         </a>
                     }

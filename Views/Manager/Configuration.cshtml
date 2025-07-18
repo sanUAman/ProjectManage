@@ -13,7 +13,7 @@
 </div>
 
 <div class="configuration-container">
-    <form method="post" asp-controller="Participant" asp-action="SaveParticipant">
+    <form method="post" asp-controller="Manager" asp-action="SaveParticipant">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="ProjectId" />
         <input type="hidden" asp-for="ProjectName" />
@@ -42,7 +42,7 @@
     </form>
 
     <div class="delete-button-div">
-        <form method="post" asp-controller="Participant" asp-action="DeleteParticipant">
+        <form method="post" asp-controller="Manager" asp-action="DeleteParticipant">
             <button type="submit" class="delete-button">Delete</button>
         </form>
     </div>

@@ -36,20 +36,14 @@
         {
             <input asp-for="Status" type="checkbox" id="Status" />
 
-            <div class="button-container">
-                <button type="submit" class="save-button">Save</button>
-            </div>
-            <div class="button-container">
-                <a class="back-button" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Back</a>
-            </div>
+            <button type="submit" class="save-button">Save</button>
+            <a class="back-button" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Back</a>
         }
         else
         {
             <input asp-for="Status" type="checkbox" disabled />
 
-            <div class="button-container">
-                <a class="else-back-button" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Back</a>
-            </div>
+            <a class="else-back-button" asp-controller="Participant" asp-action="ParticipantProject" asp-route-id="@ViewBag.ProjectId" asp-route-name="@ViewBag.ProjectName">Back</a>
         }
     </form>
 </div>

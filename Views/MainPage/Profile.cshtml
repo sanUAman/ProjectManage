@@ -10,10 +10,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
 <header>
-    <a class="logo" asp-controller="Participant" asp-action="MainPage">ProjeX</a>
+    <a class="logo" asp-controller="MainPage" asp-action="MainPage">ProjeX</a>
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav class="menu">
-        <a class="profile" asp-controller="Participant" asp-action="Profile">@ViewBag.Nickname</a>
+        <a class="profile" asp-controller="MainPage" asp-action="Profile">@ViewBag.Nickname</a>
         <a class="exit" href="/SignIn">
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="container-wrapper">
-    <form method="post" asp-controller="Participant" asp-action="Messages">
+    <form method="post" asp-controller="MainPage" asp-action="Messages">
         <input type="hidden" name="nickname" value="@ViewBag.nickname" />
         <div class="messages-container">
             <div class="name-of-container">
@@ -40,7 +40,7 @@
                 {
                     foreach (var message in ViewBag.Messages)
                     {
-                        <a class="message-card" asp-controller="Participant" asp-action="Messages">
+                        <a class="message-card" asp-controller="MainPage" asp-action="Messages">
                             @message
                         </a>
                     }

@@ -13,7 +13,7 @@
 </div>
 
 <div class="container">
-    <form method="post" asp-controller="Participant" asp-action="SignUpController">
+    <form method="post" asp-controller="MainPage" asp-action="SignUpController">
         <label asp-for="nickname">Nickname:</label>
         <input asp-for="nickname" type="text" id="nickname" name="nickname" minlength="4" required /><br>
         <span asp-validation-for="nickname" class="text-danger"></span>
