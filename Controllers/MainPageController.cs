@@ -33,9 +33,21 @@ namespace ProjectManage.Controllers
             return View();
         }
 
+        [Route("SignUpError")]
+        public IActionResult SignUpError()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SignUpController(Participant participant)
         {
+            bool nicknameExists = _context.Participants.Any(p => p.nickname == participant.nickname);
+            if (nicknameExists)
+            {
+                return RedirectToAction("SignUpError");
+            }
+
             var passwordHasher = new PasswordHasher<Participant>();
             participant.passwordHash = passwordHasher.HashPassword(participant, participant.password);
 
